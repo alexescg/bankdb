@@ -17,13 +17,15 @@ public class Cliente extends Persona{
     
     private String nombre_cliente;
     
-    private String apellido_cliente;
+    private String apellidos_cliente;
     
     private String direccion_cliente;
     
     private Timestamp f_nacimiento_cliente;
     
-    private String telefono;
+    private BigDecimal telefono;
+    
+    private String email;
     
     
     private MetodosSQL metodos = new MetodosSQL();
@@ -31,18 +33,16 @@ public class Cliente extends Persona{
     public Cliente() {
     }
 
-    public Cliente(BigDecimal id_cliente, String nombre_cliente, String apellido_cliente, String direccion_cliente, Timestamp f_nacimiento_cliente, String telefono) {
+    public Cliente(BigDecimal id_cliente, String nombre_cliente, String apellidos_cliente, String direccion_cliente, Timestamp f_nacimiento_cliente, BigDecimal telefono, String email) {
         this.id_cliente = id_cliente;
         this.nombre_cliente = nombre_cliente;
-        this.apellido_cliente = apellido_cliente;
+        this.apellidos_cliente = apellidos_cliente;
         this.direccion_cliente = direccion_cliente;
         this.f_nacimiento_cliente = f_nacimiento_cliente;
         this.telefono = telefono;
+        this.email = email;
     }
 
-    
-    
-    
     public boolean altaClientes(String Nombre, String Apellidos,
             String Direccion, String FechaNacimiento, String NumeroTelefono)
     {
@@ -101,17 +101,17 @@ public class Cliente extends Persona{
     }
 
     /**
-     * @return the apellido_cliente
+     * @return the apellidos_cliente
      */
-    public String getApellido_cliente() {
-        return apellido_cliente;
+    public String getApellidos_cliente() {
+        return apellidos_cliente;
     }
 
     /**
-     * @param apellido_cliente the apellido_cliente to set
+     * @param apellidos_cliente the apellidos_cliente to set
      */
-    public void setApellido_cliente(String apellido_cliente) {
-        this.apellido_cliente = apellido_cliente;
+    public void setApellidos_cliente(String apellidos_cliente) {
+        this.apellidos_cliente = apellidos_cliente;
     }
 
     /**
@@ -145,14 +145,14 @@ public class Cliente extends Persona{
     /**
      * @return the telefono
      */
-    public String getTelefono() {
+    public BigDecimal getTelefono() {
         return telefono;
     }
 
     /**
      * @param telefono the telefono to set
      */
-    public void setTelefono(String telefono) {
+    public void setTelefono(BigDecimal telefono) {
         this.telefono = telefono;
     }
 
@@ -168,5 +168,19 @@ public class Cliente extends Persona{
      */
     public void setMetodos(MetodosSQL metodos) {
         this.metodos = metodos;
+    }
+
+    /**
+     * @return the email
+     */
+    public String getEmail() {
+        return email;
+    }
+
+    /**
+     * @param email the email to set
+     */
+    public void setEmail(String email) {
+        this.email = email;
     }
 }
