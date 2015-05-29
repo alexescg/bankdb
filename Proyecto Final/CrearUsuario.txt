@@ -1,0 +1,6 @@
+
+create user banco identified by 1234
+
+grant connect to banco
+
+grant all privileges to banco identified by 1234

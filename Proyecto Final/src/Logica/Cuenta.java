@@ -2,6 +2,7 @@ package Logica;
 
 import static Logica.MetodosSQL.st;
 import java.math.BigDecimal;
+import java.sql.Timestamp;
 import javax.swing.JOptionPane;
 
 /**
@@ -12,42 +13,13 @@ public class Cuenta {
 
     private BigDecimal id_cuenta;
     
-    private BigDecimal saldo;
+    private Timestamp fecha_apertura;
     
-    private BigDecimal id_saldo;
+    private Timestamp fecha_cierre;
     
-    private String tipo;
-
-    public Cuenta(BigDecimal id_cuenta, BigDecimal saldo, BigDecimal id_saldo, String tipo) {
-        this.id_cuenta = id_cuenta;
-        this.saldo = saldo;
-        this.id_saldo = id_saldo;
-        this.tipo = tipo;
-    }
+    private String estado;
     
-    public Cuenta() {
-        
-
-    }
-    
-    MetodosSQL metodos = new MetodosSQL();
- 
-    public void altaCuenta()
-    {        
-        try
-    {
-        metodos.conectar();
-        
-        String result = "INSERT INTO CUENTAS VALUES('";
-        st.execute(result);
-        metodos.cn.close();
-        JOptionPane.showMessageDialog(null, "Registro Guardado");
-    }
-    catch(Exception e)
-    {
-        JOptionPane.showMessageDialog(null, "Error al llenar datos\n" + e);
-    }
-}
+    private BigDecimal id_cliente;
 
     /**
      * @return the id_cuenta
@@ -64,44 +36,60 @@ public class Cuenta {
     }
 
     /**
-     * @return the saldo
+     * @return the fecha_apertura
      */
-    public BigDecimal getSaldo() {
-        return saldo;
+    public Timestamp getFecha_apertura() {
+        return fecha_apertura;
     }
 
     /**
-     * @param saldo the saldo to set
+     * @param fecha_apertura the fecha_apertura to set
      */
-    public void setSaldo(BigDecimal saldo) {
-        this.saldo = saldo;
+    public void setFecha_apertura(Timestamp fecha_apertura) {
+        this.fecha_apertura = fecha_apertura;
     }
 
     /**
-     * @return the id_saldo
+     * @return the fecha_cierre
      */
-    public BigDecimal getId_saldo() {
-        return id_saldo;
+    public Timestamp getFecha_cierre() {
+        return fecha_cierre;
     }
 
     /**
-     * @param id_saldo the id_saldo to set
+     * @param fecha_cierre the fecha_cierre to set
      */
-    public void setId_saldo(BigDecimal id_saldo) {
-        this.id_saldo = id_saldo;
+    public void setFecha_cierre(Timestamp fecha_cierre) {
+        this.fecha_cierre = fecha_cierre;
     }
 
     /**
-     * @return the tipo
+     * @return the estado
      */
-    public String getTipo() {
-        return tipo;
+    public String getEstado() {
+        return estado;
     }
 
     /**
-     * @param tipo the tipo to set
+     * @param estado the estado to set
      */
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
+
+    /**
+     * @return the id_cliente
+     */
+    public BigDecimal getId_cliente() {
+        return id_cliente;
+    }
+
+    /**
+     * @param id_cliente the id_cliente to set
+     */
+    public void setId_cliente(BigDecimal id_cliente) {
+        this.id_cliente = id_cliente;
+    }
+
+    
 }

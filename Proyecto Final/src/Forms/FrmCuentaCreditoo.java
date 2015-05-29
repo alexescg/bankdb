@@ -1,9 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Forms;
+
+import Logica.Cliente;
+import Logica.OracleUtils;
+import java.util.Random;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -11,11 +11,21 @@ package Forms;
  */
 public class FrmCuentaCreditoo extends javax.swing.JFrame {
 
+    Random r = new Random();
     /**
      * Creates new form FrmCuentaAhorro
      */
     public FrmCuentaCreditoo() {
         initComponents();
+    }
+
+    public FrmCuentaCreditoo(Cliente c) {
+        initComponents();
+        lblcontadorClienteCC.setText("" + c.getId_cliente());
+        lblContadorCuentaAhorro.setText("" + r.nextInt(1000));
+        boxCC.removeAllItems();
+        boxCC.addItem("Activo");
+        boxCC.addItem("Inactivo");
     }
 
     /**
@@ -50,6 +60,8 @@ public class FrmCuentaCreditoo extends javax.swing.JFrame {
         cmdGuardarCC = new org.edisoncor.gui.button.ButtonAction();
         jLabel10 = new javax.swing.JLabel();
         boxCC = new javax.swing.JComboBox();
+        jLabel11 = new javax.swing.JLabel();
+        txtSaldoCC = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -157,10 +169,17 @@ public class FrmCuentaCreditoo extends javax.swing.JFrame {
         );
 
         cmdGuardarCC.setText("Guardar");
+        cmdGuardarCC.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdGuardarCCActionPerformed(evt);
+            }
+        });
 
         jLabel10.setText("Estado:");
 
         boxCC.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jLabel11.setText("Crédito:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -174,15 +193,22 @@ public class FrmCuentaCreditoo extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(47, 47, 47)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(35, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
                 .addGap(66, 66, 66)
-                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(boxCC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(cmdGuardarCC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(40, 40, 40))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(boxCC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(40, 366, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel11)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtSaldoCC, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(cmdGuardarCC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(36, 36, 36))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -192,16 +218,63 @@ public class FrmCuentaCreditoo extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(boxCC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cmdGuardarCC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(boxCC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(27, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                        .addComponent(cmdGuardarCC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(27, 27, 27))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(27, 27, 27)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtSaldoCC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel11))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void cmdGuardarCCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdGuardarCCActionPerformed
+        if (OracleUtils.esNumeroValido(txtDiaApCC.getText()) && Integer.parseInt(txtDiaApCC.getText()) <= 31
+                && OracleUtils.esNumeroValido(txtMesApCC.getText()) && Integer.parseInt(txtMesApCC.getText()) <= 12
+                && OracleUtils.esNumeroValido(txtAnioApCC.getText()) && Integer.parseInt(txtAnioApCC.getText()) >= 1915
+                && OracleUtils.esNumeroValido(txtDiaCierreCC.getText()) && Integer.parseInt(txtDiaCierreCC.getText()) <= 31
+                && OracleUtils.esNumeroValido(txtMesCierreCC.getText()) && Integer.parseInt(txtMesCierreCC.getText()) <= 12
+                && OracleUtils.esNumeroValido(txtAnioCierreCC.getText()) && Integer.parseInt(txtAnioCierreCC.getText()) > 1915
+                && OracleUtils.esNumeroValido(txtSaldoCC.getText())) {
+            if (Integer.parseInt(txtAnioCierreCC.getText()) - Integer.parseInt(txtAnioApCC.getText()) >= 1) {
+                if (Integer.parseInt(txtSaldoCC.getText()) > 10000) {
+
+                    String diaA = txtDiaApCC.getText();
+                    String mesA = txtMesApCC.getText();
+                    String anioA = txtAnioApCC.getText();
+                    String diaC = txtDiaCierreCC.getText();
+                    String mesC = txtMesCierreCC.getText();
+                    String anioC = txtAnioCierreCC.getText();
+
+                    String sql = String.format("insert into cuentas values(%s, (TO_DATE('%s/%s/%s', 'yyyy/mm/dd')), (TO_DATE('%s/%s/%s', 'yyyy/mm/dd')), '%s', '%s')",
+                            lblContadorCuentaAhorro.getText(), anioA, mesA, diaA, anioC, mesC, diaC, boxCC.getSelectedItem().toString(), lblcontadorClienteCC.getText());
+                    OracleUtils.executeQuery(OracleUtils.getDBConexion(), sql);
+                    String sqlCA = String.format("insert into cuenta_credito values(%s, %s)", lblContadorCuentaAhorro.getText(), txtSaldoCC.getText());
+                    OracleUtils.executeQuery(OracleUtils.getDBConexion(), sqlCA);
+
+                } else {
+                    JOptionPane.showMessageDialog(rootPane, "El credito inicial debera estar entre 0 y 10000");
+                }
+
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Fecha de Cierre debera ser mayor que la de Apertura por al menos 1 año ");
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Favor de insertar valores adecuados para los campos");
+
+        }
+
+    }//GEN-LAST:event_cmdGuardarCCActionPerformed
 
     /**
      * @param args the command line arguments
@@ -244,6 +317,7 @@ public class FrmCuentaCreditoo extends javax.swing.JFrame {
     private org.edisoncor.gui.button.ButtonAction cmdGuardarCC;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -263,5 +337,6 @@ public class FrmCuentaCreditoo extends javax.swing.JFrame {
     private javax.swing.JTextField txtDiaCierreCC;
     private javax.swing.JTextField txtMesApCC;
     private javax.swing.JTextField txtMesCierreCC;
+    private javax.swing.JTextField txtSaldoCC;
     // End of variables declaration//GEN-END:variables
 }

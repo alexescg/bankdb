@@ -1,5 +1,8 @@
 package Logica;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.sql.Connection;
@@ -16,6 +19,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -24,8 +28,8 @@ import javax.swing.JComboBox;
 public class OracleUtils {
     
      private static final String url = "jdbc:oracle:thin:@localhost:1521:XE";
-    private static final  String usuario ="banco";
-    private static final String contrasena = "1234";
+    private static String usuario ="banco";
+    private static String contrasena = "1234";
     private static Connection con;
     private static Statement st;
     private static String query = null;
@@ -52,6 +56,91 @@ public class OracleUtils {
         }
         return con;
     }
+    
+    
+    /**
+     * Metodo que verifica la existencia del usuario que utilizara todo el sistema
+     * @return falso cuando el usuario no existe y verdadero cuando si existe.
+     */
+    public static Boolean verificarUsuario(){
+    try {   
+            con= OracleUtils.getDBConexion();
+            if(con!=null){
+                con.close();
+                return true;
+            }
+            return false;
+        } catch (SQLException ex) {
+            con=null;
+            return false;
+        }
+        
+    }
+    
+    /**
+     * Metodo que crea el usuario que se utilizara para todo el sistem. 
+     * Este solamente se usara una vez que sera al correr por primera vez el programa.
+     */
+    public static Boolean creacionUsuario(){
+        JOptionPane.showMessageDialog(null, "Lo sentimos es la primera vez que entrara al sistema.\n"
+                    + "Pongase en contacto con su DBA para que ingrese la contraseña del usuario \"System\" ...");
+        System.out.println(".....");
+        File file = new File("CrearUsuario.txt");
+        usuario = "system";
+        contrasena = JOptionPane.showInputDialog("Introduzca la contraseña del usuario system");
+        try {
+            FileReader in =  new FileReader(file.getAbsolutePath());
+            BufferedReader br = new BufferedReader(in);
+            con=OracleUtils.getDBConexion();
+            System.out.println(con);
+            st = con.createStatement();
+            while (br.readLine()!=null)   {
+                query = br.readLine().toString();
+                System.out.println (query);
+                st.execute(query);
+                query=null;
+            }
+            br.close();
+            st.close();
+            con.close();
+        } catch (Exception e) {
+                Logger.getLogger(OracleUtils.class.getName()).log(Level.SEVERE, null, e);
+                return false;
+        }
+        return true;
+        
+    }
+    
+    /**
+     * Metodo que Crea la base de datos para su utilizacion en el sistema. Este 
+     * metodo solo se usara una vez al correr el programa por primera vez.
+     */
+    public static Boolean creacionBase(){
+        FileReader fstream = null;
+        usuario = "banco";
+        contrasena = "1234";
+         File file = new File("CrearBase.txt");
+        try {
+            con=OracleUtils.getDBConexion();
+            st = con.createStatement();
+            fstream = new FileReader(file.getAbsolutePath());
+            BufferedReader br = new BufferedReader(fstream);
+            while (br.readLine()!= null)   {
+                query = br.readLine().toString();
+                System.out.println (query);
+                st.executeUpdate(query);
+            }
+            br.close();
+            st.close();
+            con.close();
+        } catch (Exception e) {
+                Logger.getLogger(OracleUtils.class.getName()).log(Level.SEVERE, null, e);
+                return false;
+        }
+        return true;
+        
+    }
+    
     
      /**
      * Metodo generico que mapea las consultas de tipo select a una lista.
