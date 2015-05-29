@@ -1,12 +1,11 @@
-
 package Forms;
 
 import Logica.Cliente;
 import Logica.MetodosSQL;
+import Logica.OracleUtils;
 import Logica.Referencias;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.List;
+import javax.swing.JOptionPane;
 
 
 /**
@@ -14,17 +13,19 @@ import java.util.logging.Logger;
  * @author Edgar
  */
 public class FrmClientes extends javax.swing.JFrame {
-    
+
     MetodosSQL metodos = new MetodosSQL();
     Cliente cliente = new Cliente();
     Referencias referencias = new Referencias();
     
+
     String Fecha;
-    
+
     public FrmClientes() {
         initComponents();
-        
+
     }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -58,8 +59,10 @@ public class FrmClientes extends javax.swing.JFrame {
         txtDireccionRef1 = new javax.swing.JTextField();
         lblTelefonoRef1 = new javax.swing.JLabel();
         txtTelefonoRef1 = new javax.swing.JTextField();
+        agregarUnocmd = new org.edisoncor.gui.button.ButtonAction();
         jLabel4 = new javax.swing.JLabel();
         emailUnotxt = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
         cmdCrearCliente = new org.edisoncor.gui.button.ButtonAction();
         jLabel1 = new javax.swing.JLabel();
         emailtxt = new javax.swing.JTextField();
@@ -207,6 +210,13 @@ public class FrmClientes extends javax.swing.JFrame {
 
         lblTelefonoRef1.setText("Telefono");
 
+        agregarUnocmd.setText("Agregar");
+        agregarUnocmd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                agregarUnocmdActionPerformed(evt);
+            }
+        });
+
         jLabel4.setText("Email");
 
         emailUnotxt.addActionListener(new java.awt.event.ActionListener() {
@@ -215,11 +225,13 @@ public class FrmClientes extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setText("Agregar");
+
         javax.swing.GroupLayout pnlInferior1Layout = new javax.swing.GroupLayout(pnlInferior1);
         pnlInferior1.setLayout(pnlInferior1Layout);
         pnlInferior1Layout.setHorizontalGroup(
             pnlInferior1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlInferior1Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlInferior1Layout.createSequentialGroup()
                 .addContainerGap(68, Short.MAX_VALUE)
                 .addGroup(pnlInferior1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlInferior1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -245,6 +257,10 @@ public class FrmClientes extends javax.swing.JFrame {
                             .addComponent(txtTelefonoRef1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(emailUnotxt, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(37, 37, 37))
+            .addGroup(pnlInferior1Layout.createSequentialGroup()
+                .addGap(148, 148, 148)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnlInferior1Layout.setVerticalGroup(
             pnlInferior1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -271,7 +287,9 @@ public class FrmClientes extends javax.swing.JFrame {
                         .addComponent(jLabel4)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(emailUnotxt, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE))
-                .addGap(61, 61, 61))
+                .addGap(18, 18, 18)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         tabbedPaneHeader1.addTab("Referencia ", pnlInferior1);
@@ -279,7 +297,7 @@ public class FrmClientes extends javax.swing.JFrame {
         cmdCrearCliente.setText("Crear");
         cmdCrearCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmdCrearClienteActionPerformed(evt);
+                guardarClientecmdActionPerformed(evt);
             }
         });
 
@@ -348,13 +366,87 @@ public class FrmClientes extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_emailUnotxtActionPerformed
 
-    private void cmdCrearClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdCrearClienteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cmdCrearClienteActionPerformed
+    private void guardarClientecmdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarClientecmdActionPerformed
 
+        //Validacion Cliente
+        if (OracleUtils.esCadenaValida(txtNombre.getText())
+                && OracleUtils.esCadenaValida(txtApellidos.getText())
+                && OracleUtils.esCadenaValida(txtDireccion.getText())
+                //Fecha
+                && OracleUtils.esNumeroValido(txtDia.getText())
+                && OracleUtils.esNumeroValido(txtMes.getText())
+                && OracleUtils.esNumeroValido(txtAnio.getText()) && Integer.parseInt(txtAnio.getText()) > 1950
+                && OracleUtils.esNumeroValido(txtTelefono.getText())
+                && OracleUtils.esCadenaValida(emailtxt.getText())) {
+
+            String nombre = txtNombre.getText(); 
+            String apellidos = txtApellidos.getText();
+            String direccion = txtDireccion.getText();
+            
+            String dia = txtDia.getText();
+            String mes = txtMes.getText();
+            String ano = txtAnio.getText();
+
+            String telefono = txtTelefono.getText();
+            String correo = emailtxt.getText();
+            
+                 {
+            //(TO_DATE('2003/05/03 21:02:44', 'yyyy/mm/dd hh24:mi:ss'));
+            String sql = String.format("insert into clientes values(%s, '%s', '%s', '%s', (TO_DATE('%s/%s/%s', 'yyyy/mm/dd')), %s, '%s')",
+                    OracleUtils.CLIENTE_SEQ ,nombre, apellidos, direccion, ano, mes, dia, telefono, correo);
+                OracleUtils.executeQuery(OracleUtils.getDBConexion(), sql);
+                     System.out.println("sql = " + sql);
+            }
+        }else{
+            JOptionPane.showMessageDialog(rootPane, "Hay valores que no cumplen con los requisitos, favor de verificar...");
+        }
+
+    }//GEN-LAST:event_guardarClientecmdActionPerformed
+
+    private void agregarUnocmdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarUnocmdActionPerformed
+        // TODO add your handling code here:
+        if (OracleUtils.esCadenaValida(txtNombreRef1.getText())
+        &&  OracleUtils.esCadenaValida(txtApellidosRef1.getText())
+        &&  OracleUtils.esCadenaValida(txtDireccionRef1.getText())
+        &&  OracleUtils.esNumeroValido(txtTelefonoRef1.getText())
+        &&  OracleUtils.esCadenaValida(emailUnotxt.getText())){
+            
+            //referencia
+        String nombreRef = txtNombreRef1.getText();
+        String apellidoRef = txtApellidosRef1.getText();
+        String direccionRef = txtDireccionRef1.getText();
+        String telefonoRef = txtTelefonoRef1.getText();
+        String emailRef = emailUnotxt.getText();
+            
+            //Cliente Search
+            String nombre = txtNombre.getText(); 
+            String apellidos = txtApellidos.getText();
+            String direccion = txtDireccion.getText();
+            
+            String dia = txtDia.getText();
+            String mes = txtMes.getText();
+            String ano = txtAnio.getText();
+
+            String telefono = txtTelefono.getText();
+            String correo = emailtxt.getText();
+            
+                 {
+            //(TO_DATE('2003/05/03 21:02:44', 'yyyy/mm/dd hh24:mi:ss'));
+//            String sql = String.format("select * from clientes where nombre like '%s' and apellido like '%s' and telefono like '%s' and fecha like '(TO_DATE('%s/%s/%s', 'yyyy/mm/dd'))' and correo like '%s')",
+//                    nombre, apellidos, direccion, telefono, ano, mes, dia, correo);
+//                     System.out.println("sql = " + sql);
+            
+            //List<Cliente> clientes = OracleUtils.select(OracleUtils.getDBConexion(), sql, Cliente.class);
+            
+            
+        }}
+        
+        
+        
+    }//GEN-LAST:event_agregarUnocmdActionPerformed
     /**
-     * @param args the command line arguments
-     */
+         * @param args the command line arguments
+         */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -391,10 +483,12 @@ public class FrmClientes extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private org.edisoncor.gui.button.ButtonAction agregarUnocmd;
     private org.edisoncor.gui.util.BrightPassFilter brightPassFilter1;
     private org.edisoncor.gui.button.ButtonAction cmdCrearCliente;
     private javax.swing.JTextField emailUnotxt;
     private javax.swing.JTextField emailtxt;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JSeparator jSeparator2;
@@ -426,6 +520,5 @@ public class FrmClientes extends javax.swing.JFrame {
     private javax.swing.JTextField txtTelefono;
     private javax.swing.JTextField txtTelefonoRef1;
     // End of variables declaration//GEN-END:variables
-
 
 }
