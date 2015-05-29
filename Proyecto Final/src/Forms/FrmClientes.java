@@ -8,17 +8,16 @@ import java.util.List;
 import java.util.stream.Collectors;
 import javax.swing.JOptionPane;
 
-
 /**
  *
  * @author Edgar
  */
 public class FrmClientes extends javax.swing.JFrame {
 
+    private Boolean isReady = false;
     MetodosSQL metodos = new MetodosSQL();
     Cliente cliente = new Cliente();
     Referencias referencias = new Referencias();
-    
 
     String Fecha;
 
@@ -379,83 +378,89 @@ public class FrmClientes extends javax.swing.JFrame {
                 && OracleUtils.esCadenaValida(txtApellidos.getText())
                 && OracleUtils.esCadenaValida(txtDireccion.getText())
                 //Fecha
-                && OracleUtils.esNumeroValido(txtDia.getText()) && Integer.parseInt(txtDia.getText() ) <= 31
-                && OracleUtils.esNumeroValido(txtMes.getText()) && Integer.parseInt(txtMes.getText() ) <= 12
+                && OracleUtils.esNumeroValido(txtDia.getText()) && Integer.parseInt(txtDia.getText()) <= 31
+                && OracleUtils.esNumeroValido(txtMes.getText()) && Integer.parseInt(txtMes.getText()) <= 12
                 && OracleUtils.esNumeroValido(txtAnio.getText()) && Integer.parseInt(txtAnio.getText()) >= 1950
                 && OracleUtils.esNumeroValido(txtTelefono.getText())
                 && OracleUtils.esCadenaValida(emailtxt.getText())) {
 
-            String nombre = txtNombre.getText(); 
+            String nombre = txtNombre.getText();
             String apellidos = txtApellidos.getText();
             String direccion = txtDireccion.getText();
-            
+
             String dia = txtDia.getText();
             String mes = txtMes.getText();
             String ano = txtAnio.getText();
 
             String telefono = txtTelefono.getText();
             String correo = emailtxt.getText();
-            
-                 {
-            //(TO_DATE('2003/05/03 21:02:44', 'yyyy/mm/dd hh24:mi:ss'));
-            String sql = String.format("insert into clientes values(%s, '%s', '%s', '%s', (TO_DATE('%s/%s/%s', 'yyyy/mm/dd')), %s, '%s')",
-                    OracleUtils.CLIENTE_SEQ ,nombre, apellidos, direccion, ano, mes, dia, telefono, correo);
+
+            {
+                //(TO_DATE('2003/05/03 21:02:44', 'yyyy/mm/dd hh24:mi:ss'));
+                String sql = String.format("insert into clientes values(%s, '%s', '%s', '%s', (TO_DATE('%s/%s/%s', 'yyyy/mm/dd')), %s, '%s')",
+                        OracleUtils.CLIENTE_SEQ, nombre, apellidos, direccion, ano, mes, dia, telefono, correo);
                 OracleUtils.executeQuery(OracleUtils.getDBConexion(), sql);
-                     System.out.println("sql = " + sql);
-                     JOptionPane.showMessageDialog(rootPane, "Cliente Añadido exitosamente");
+                System.out.println("sql = " + sql);
+                JOptionPane.showMessageDialog(rootPane, "Cliente Añadido exitosamente, ahora llene la referencia, la cual se basara en la cuenta de cliente recien creada");
+                isReady = true;
             }
-        }else{
+        } else {
             JOptionPane.showMessageDialog(rootPane, "Hay valores que no cumplen con los requisitos, favor de verificar...");
         }
 
     }//GEN-LAST:event_guardarClientecmdActionPerformed
 
     private void agregarUnocmdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarUnocmdActionPerformed
- 
-        
+
+
     }//GEN-LAST:event_agregarUnocmdActionPerformed
 
     private void btnagregarRefActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnagregarRefActionPerformed
-          // TODO add your handling code here:
-        if (OracleUtils.esCadenaValida(txtNombreRef1.getText())
-        &&  OracleUtils.esCadenaValida(txtApellidosRef1.getText())
-        &&  OracleUtils.esCadenaValida(txtDireccionRef1.getText())
-        &&  OracleUtils.esNumeroValido(txtTelefonoRef1.getText())
-        &&  OracleUtils.esCadenaValida(emailUnotxt.getText())){
-            
-            //referencia
-        String nombreRef = txtNombreRef1.getText();
-        String apellidoRef = txtApellidosRef1.getText();
-        String direccionRef = txtDireccionRef1.getText();
-        String telefonoRef = txtTelefonoRef1.getText();
-        String emailRef = emailUnotxt.getText();
-            
-            //Cliente Search
-            String nombre = txtNombre.getText(); 
-            String apellidos = txtApellidos.getText();
-            String direccion = txtDireccion.getText();
-            
-            String telefono = txtTelefono.getText();
-            String correo = emailtxt.getText();
-            
-                 
-            String sql = String.format("select * from clientes where nombre_cliente like '%s' and apellidos_cliente like '%s' and telefono like '%s'  and direccion_cliente like '%s' and email like '%s'",
-                    nombre, apellidos, telefono, direccion, correo);
-                     System.out.println("sql = " + sql);
-            
-            List<Cliente> clientes = (List<Cliente>) OracleUtils.select(OracleUtils.getDBConexion(), sql, Cliente.class);
-            
-            String sqlRef = String.format("insert into referencias values(%s, '%s', '%s', '%s', 's%s', %s, '%s')", OracleUtils.REFERENCIAS_SEQ, nombreRef,
-                    apellidoRef, telefonoRef, direccionRef, clientes.get(0).getId_cliente(), emailRef);
-            System.out.println("sqlRef = " + sqlRef);
-            OracleUtils.executeQuery(OracleUtils.getDBConexion(), sqlRef);
-            JOptionPane.showMessageDialog(rootPane, "Referencia Añadida exitosamente.");
+
+        if (isReady) {
+
+            if (OracleUtils.esCadenaValida(txtNombreRef1.getText())
+                    && OracleUtils.esCadenaValida(txtApellidosRef1.getText())
+                    && OracleUtils.esCadenaValida(txtDireccionRef1.getText())
+                    && OracleUtils.esNumeroValido(txtTelefonoRef1.getText())
+                    && OracleUtils.esCadenaValida(emailUnotxt.getText())) {
+
+                //referencia
+                String nombreRef = txtNombreRef1.getText();
+                String apellidoRef = txtApellidosRef1.getText();
+                String direccionRef = txtDireccionRef1.getText();
+                String telefonoRef = txtTelefonoRef1.getText();
+                String emailRef = emailUnotxt.getText();
+
+                //Cliente Search
+                String nombre = txtNombre.getText();
+                String apellidos = txtApellidos.getText();
+                String direccion = txtDireccion.getText();
+
+                String telefono = txtTelefono.getText();
+                String correo = emailtxt.getText();
+
+                String sql = String.format("select * from clientes where nombre_cliente like '%s' and apellidos_cliente like '%s' and telefono like '%s'  and direccion_cliente like '%s' and email like '%s'",
+                        nombre, apellidos, telefono, direccion, correo);
+
+                List<Cliente> clientes = (List<Cliente>) OracleUtils.select(OracleUtils.getDBConexion(), sql, Cliente.class);
+
+                String sqlRef = String.format("insert into referencias values(%s, '%s', '%s', '%s', '%s', %s, '%s')", OracleUtils.REFERENCIAS_SEQ, nombreRef,
+                        apellidoRef, telefonoRef, direccionRef, clientes.get(0).getId_cliente(), emailRef);
+                OracleUtils.executeQuery(OracleUtils.getDBConexion(), sqlRef);
+                JOptionPane.showMessageDialog(rootPane, "Referencia Añadida exitosamente.");
+            } else {
+
+                JOptionPane.showMessageDialog(rootPane, "Valoress invalidos en los campos de Referencia, favor de verificar");
+            }
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Referencia aun no esta lista para agregarse, favor de llenar datos de cliente primero");
         }
-        
+
     }//GEN-LAST:event_btnagregarRefActionPerformed
     /**
-         * @param args the command line arguments
-         */
+     * @param args the command line arguments
+     */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
