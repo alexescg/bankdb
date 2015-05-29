@@ -48,6 +48,11 @@ public class FrmTipoCuenta extends javax.swing.JFrame {
         });
 
         buttonAction2.setText("Credito/Cheques");
+        buttonAction2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonAction2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -78,6 +83,11 @@ public class FrmTipoCuenta extends javax.swing.JFrame {
         frmCuentaAhorro.setVisible(true);
         
     }//GEN-LAST:event_buttonAction1ActionPerformed
+
+    private void buttonAction2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAction2ActionPerformed
+         FrmCuentaCreditoo frmCuentaCredito = new FrmCuentaCreditoo(c);
+        frmCuentaCredito.setVisible(true);
+    }//GEN-LAST:event_buttonAction2ActionPerformed
 
     /**
      * @param args the command line arguments

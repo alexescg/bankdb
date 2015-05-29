@@ -7,9 +7,7 @@ package Forms;
 
 import Logica.Cliente;
 import Logica.OracleUtils;
-import java.util.List;
 import java.util.Random;
-import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 
 /**
@@ -251,7 +249,6 @@ public class FrmCuentaAhorro extends javax.swing.JFrame {
     }//GEN-LAST:event_txtDiaApCAActionPerformed
 
     private void cmdGuardarCAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdGuardarCAActionPerformed
-        System.out.println(boxCA.getSelectedItem().toString());
         if (OracleUtils.esNumeroValido(txtDiaApCA.getText()) && Integer.parseInt(txtDiaApCA.getText()) <= 31
                 && OracleUtils.esNumeroValido(txtMesApCA.getText()) && Integer.parseInt(txtMesApCA.getText()) <= 12
                 && OracleUtils.esNumeroValido(txtAnioApCA.getText()) && Integer.parseInt(txtAnioApCA.getText()) >= 1915

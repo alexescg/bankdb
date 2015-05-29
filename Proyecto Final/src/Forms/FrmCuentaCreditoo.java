@@ -1,9 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Forms;
+
+import Logica.Cliente;
+import Logica.OracleUtils;
+import java.util.Random;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -11,11 +11,21 @@ package Forms;
  */
 public class FrmCuentaCreditoo extends javax.swing.JFrame {
 
+    Random r = new Random();
     /**
      * Creates new form FrmCuentaAhorro
      */
     public FrmCuentaCreditoo() {
         initComponents();
+    }
+
+    public FrmCuentaCreditoo(Cliente c) {
+        initComponents();
+        lblcontadorClienteCC.setText("" + c.getId_cliente());
+        lblContadorCuentaAhorro.setText("" + r.nextInt(1000));
+        boxCC.removeAllItems();
+        boxCC.addItem("Activo");
+        boxCC.addItem("Inactivo");
     }
 
     /**
@@ -159,6 +169,11 @@ public class FrmCuentaCreditoo extends javax.swing.JFrame {
         );
 
         cmdGuardarCC.setText("Guardar");
+        cmdGuardarCC.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdGuardarCCActionPerformed(evt);
+            }
+        });
 
         jLabel10.setText("Estado:");
 
@@ -221,6 +236,45 @@ public class FrmCuentaCreditoo extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void cmdGuardarCCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdGuardarCCActionPerformed
+        if (OracleUtils.esNumeroValido(txtDiaApCC.getText()) && Integer.parseInt(txtDiaApCC.getText()) <= 31
+                && OracleUtils.esNumeroValido(txtMesApCC.getText()) && Integer.parseInt(txtMesApCC.getText()) <= 12
+                && OracleUtils.esNumeroValido(txtAnioApCC.getText()) && Integer.parseInt(txtAnioApCC.getText()) >= 1915
+                && OracleUtils.esNumeroValido(txtDiaCierreCC.getText()) && Integer.parseInt(txtDiaCierreCC.getText()) <= 31
+                && OracleUtils.esNumeroValido(txtMesCierreCC.getText()) && Integer.parseInt(txtMesCierreCC.getText()) <= 12
+                && OracleUtils.esNumeroValido(txtAnioCierreCC.getText()) && Integer.parseInt(txtAnioCierreCC.getText()) > 1915
+                && OracleUtils.esNumeroValido(txtSaldoCC.getText())) {
+            if (Integer.parseInt(txtAnioCierreCC.getText()) - Integer.parseInt(txtAnioApCC.getText()) >= 1) {
+                if (Integer.parseInt(txtSaldoCC.getText()) > 10000) {
+
+                    String diaA = txtDiaApCC.getText();
+                    String mesA = txtMesApCC.getText();
+                    String anioA = txtAnioApCC.getText();
+                    String diaC = txtDiaCierreCC.getText();
+                    String mesC = txtMesCierreCC.getText();
+                    String anioC = txtAnioCierreCC.getText();
+
+                    String sql = String.format("insert into cuentas values(%s, (TO_DATE('%s/%s/%s', 'yyyy/mm/dd')), (TO_DATE('%s/%s/%s', 'yyyy/mm/dd')), '%s', '%s')",
+                            lblContadorCuentaAhorro.getText(), anioA, mesA, diaA, anioC, mesC, diaC, boxCC.getSelectedItem().toString(), lblcontadorClienteCC.getText());
+                    OracleUtils.executeQuery(OracleUtils.getDBConexion(), sql);
+                    String sqlCA = String.format("insert into cuenta_credito values(%s, %s)", lblContadorCuentaAhorro.getText(), txtSaldoCC.getText());
+                    OracleUtils.executeQuery(OracleUtils.getDBConexion(), sqlCA);
+
+                } else {
+                    JOptionPane.showMessageDialog(rootPane, "El credito inicial debera estar entre 0 y 10000");
+                }
+
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Fecha de Cierre debera ser mayor que la de Apertura por al menos 1 año ");
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Favor de insertar valores adecuados para los campos");
+
+        }
+
+    }//GEN-LAST:event_cmdGuardarCCActionPerformed
 
     /**
      * @param args the command line arguments
