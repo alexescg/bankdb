@@ -407,7 +407,7 @@ public class FrmClientes extends javax.swing.JFrame {
             
             {
                 //(TO_DATE('2003/05/03 21:02:44', 'yyyy/mm/dd hh24:mi:ss'));
-                String sql = String.format("insert into clientes values(%s, '%s', '%s', '%s', (TO_DATE('%s/%s/%s', 'yyyy/mm/dd')), %s, '%s')",
+                String sql = String.format("insert into clientes values(%s, '%s', '%s', '%s', (TO_DATE('%s/%s/%s', 'yyyy/mm/dd')), '%s', '%s')",
                         OracleUtils.CLIENTE_SEQ, nombre, apellidos, direccion, ano, mes, dia, telefono, correo);
                 OracleUtils.executeQuery(OracleUtils.getDBConexion(), sql);
                 System.out.println("sql = " + sql);

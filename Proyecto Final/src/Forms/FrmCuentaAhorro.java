@@ -19,7 +19,6 @@ import javax.swing.JOptionPane;
 public class FrmCuentaAhorro extends javax.swing.JFrame {
 
     Random r = new Random();
-
     /**
      * Creates new form FrmCuentaAhorro
      */
@@ -31,14 +30,10 @@ public class FrmCuentaAhorro extends javax.swing.JFrame {
         initComponents();
         lblcontadorCliente.setText("" + c.getId_cliente());
         lblContadorCuentaAhorro.setText("" + r.nextInt(1000));
-        boxCA =  new JComboBox(Estado.values());
-        Estado[] estados = Estado.values();
-        for (Estado estado : estados) {
-            boxCA.addItem(estado);
-        }
-//        for (Estado estado : estados) {
-//            boxCA.addItem(estado);
-//        }
+        boxCA.removeAllItems();
+        boxCA.addItem("Activo");
+        boxCA.addItem("Inactivo");
+        
     }
 
     /**
@@ -242,40 +237,37 @@ public class FrmCuentaAhorro extends javax.swing.JFrame {
     }//GEN-LAST:event_txtDiaApCAActionPerformed
 
     private void cmdGuardarCAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdGuardarCAActionPerformed
-        
+        System.out.println(boxCA.getSelectedItem().toString());
         if (OracleUtils.esNumeroValido(txtDiaApCA.getText()) && Integer.parseInt(txtDiaApCA.getText()) <= 31
                 && OracleUtils.esNumeroValido(txtMesApCA.getText()) && Integer.parseInt(txtMesApCA.getText()) <= 12
                 && OracleUtils.esNumeroValido(txtAnioApCA.getText()) && Integer.parseInt(txtAnioApCA.getText()) >= 1915
-        
-        && OracleUtils.esNumeroValido(txtDiaCierreCA.getText()) && Integer.parseInt(txtDiaCierreCA.getText()) <= 31
+                && OracleUtils.esNumeroValido(txtDiaCierreCA.getText()) && Integer.parseInt(txtDiaCierreCA.getText()) <= 31
                 && OracleUtils.esNumeroValido(txtMesCierreCA.getText()) && Integer.parseInt(txtMesCierreCA.getText()) <= 12
-                && OracleUtils.esNumeroValido(txtAnioCierreCA.getText()) && Integer.parseInt(txtAnioCierreCA.getText()) > 1915){
-            if ( Integer.parseInt(txtAnioCierreCA.getText()) - Integer.parseInt(txtAnioApCA.getText()) > 1) {
+                && OracleUtils.esNumeroValido(txtAnioCierreCA.getText()) && Integer.parseInt(txtAnioCierreCA.getText()) > 1915) {
+            if (Integer.parseInt(txtAnioCierreCA.getText()) - Integer.parseInt(txtAnioApCA.getText()) >= 1) {
+
+                String diaA = txtDiaApCA.getText();
+                String mesA = txtMesApCA.getText();
+                String anioA = txtAnioApCA.getText();
+                String diaC = txtDiaCierreCA.getText();
+                String mesC = txtMesCierreCA.getText();
+                String anioC = txtAnioCierreCA.getText();
                 
-               // String sql = 
+                //String sql = String.format("Insert into cuentas values(%s, %s, (TO_DATE('%s/%s/%s', 'yyyy/mm/dd')), '%s', %s )", OracleUtils.CUENTAS_SEQ,);
                 //OracleUtils.executeQuery(OracleUtils.getDBConexion(), );
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-            } else{
+                String sql = String.format("insert into cuentas values(%s, (TO_DATE('%s/%s/%s', 'yyyy/mm/dd')), (TO_DATE('%s/%s/%s', 'yyyy/mm/dd')), %s, '%s')",
+                        OracleUtils.CLIENTE_SEQ, anioA, mesA, diaA, anioC, mesC, diaC, boxCA.getSelectedItem().toString(), lblcontadorCliente.getText());
+                System.out.println("sql = " + sql);
+            } else {
                 JOptionPane.showMessageDialog(rootPane, "Fecha de Cierre debera ser mayor que la de Apertura por al menos 1 año ");
             }
-            
-            
-        }else{
+
+        } else {
             JOptionPane.showMessageDialog(rootPane, "Favor de insertar valores adecuados para los campos");
-            
+
         }
-        
-        
+
+
     }//GEN-LAST:event_cmdGuardarCAActionPerformed
 
     /**
