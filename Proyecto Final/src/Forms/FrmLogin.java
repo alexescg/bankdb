@@ -92,7 +92,6 @@ private void ingresarcmdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
 
     System.out.println(txtUsuario.getText());
     System.out.println(pswContrasenia.getText());
-    System.out.println("aqui si llega?");
     if ((empleado.Ingresar(txtUsuario.getText(), pswContrasenia.getText())) == true) {
         frmMain.setVisible(true);
         this.dispose();

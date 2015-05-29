@@ -25,20 +25,15 @@ public class Cuenta {
         this.tipo = tipo;
     }
     
-    
     public Cuenta() {
-    
+        
+
     }
-        MetodosSQL metodos = new MetodosSQL();
-        
-        int contRegistros = 0;
-     
+    
+    MetodosSQL metodos = new MetodosSQL();
+ 
     public void altaCuenta()
-    {
-        if(contRegistros >= 0 ){
-            
-        }
-        
+    {        
         try
     {
         metodos.conectar();

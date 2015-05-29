@@ -1,6 +1,7 @@
 
 package Logica;
 
+
 import static Logica.MetodosSQL.cn;
 import static Logica.MetodosSQL.rs;
 import static Logica.MetodosSQL.st;
@@ -15,6 +16,9 @@ import javax.swing.table.DefaultTableModel;
  * @author Edgar
  */
 public class Movimiento {
+   
+    MetodosSQL metodos = new MetodosSQL();
+    Cuenta cuenta = new Cuenta();
     
     private BigDecimal folio;
     
@@ -157,5 +161,6 @@ public class Movimiento {
      */
     public void setId_cuenta(BigDecimal id_cuenta) {
         this.id_cuenta = id_cuenta;
+
     }
 }

@@ -7,6 +7,7 @@ import Logica.Referencias;
 import java.util.List;
 import javax.swing.JOptionPane;
 
+
 /**
  *
  * @author Edgar
@@ -645,7 +646,6 @@ public class FrmClientes extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_agregarUnocmdActionPerformed
-
     /**
          * @param args the command line arguments
          */

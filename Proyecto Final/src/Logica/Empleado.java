@@ -61,7 +61,9 @@ public class Empleado extends Persona{
         setContrasenia(Contrasenia);
         try {
             metodos.conectar();
-            String result = "SELECT * FROM EMPLEADOS WHERE usuario like '" + getUsuario() + "' AND contrasenia like '" + getContrasenia() + "'";
+
+            String result = "SELECT * FROM EMPLEADOS WHERE usuario like '" + usuario + "' AND contrasenia like '" + contrasenia + "'";
+
             System.out.println(result);
             rs = st.executeQuery(result);
             System.out.println("Entro en el catch");
