@@ -257,7 +257,8 @@ public class FrmCuentaAhorro extends javax.swing.JFrame {
                 && OracleUtils.esNumeroValido(txtAnioApCA.getText()) && Integer.parseInt(txtAnioApCA.getText()) >= 1915
                 && OracleUtils.esNumeroValido(txtDiaCierreCA.getText()) && Integer.parseInt(txtDiaCierreCA.getText()) <= 31
                 && OracleUtils.esNumeroValido(txtMesCierreCA.getText()) && Integer.parseInt(txtMesCierreCA.getText()) <= 12
-                && OracleUtils.esNumeroValido(txtAnioCierreCA.getText()) && Integer.parseInt(txtAnioCierreCA.getText()) > 1915) {
+                && OracleUtils.esNumeroValido(txtAnioCierreCA.getText()) && Integer.parseInt(txtAnioCierreCA.getText()) > 1915
+                && OracleUtils.esNumeroValido(txtSaldoCA.getText())) {
             if (Integer.parseInt(txtAnioCierreCA.getText()) - Integer.parseInt(txtAnioApCA.getText()) >= 1) {
 
                 String diaA = txtDiaApCA.getText();
@@ -267,11 +268,11 @@ public class FrmCuentaAhorro extends javax.swing.JFrame {
                 String mesC = txtMesCierreCA.getText();
                 String anioC = txtAnioCierreCA.getText();
                 
-                //String sql = String.format("Insert into cuentas values(%s, %s, (TO_DATE('%s/%s/%s', 'yyyy/mm/dd')), '%s', %s )", OracleUtils.CUENTAS_SEQ,);
-                //OracleUtils.executeQuery(OracleUtils.getDBConexion(), );
-                String sql = String.format("insert into cuentas values(%s, (TO_DATE('%s/%s/%s', 'yyyy/mm/dd')), (TO_DATE('%s/%s/%s', 'yyyy/mm/dd')), %s, '%s')",
-                        OracleUtils.CLIENTE_SEQ, anioA, mesA, diaA, anioC, mesC, diaC, boxCA.getSelectedItem().toString(), lblcontadorCliente.getText());
-                System.out.println("sql = " + sql);
+                String sql = String.format("insert into cuentas values(%s, (TO_DATE('%s/%s/%s', 'yyyy/mm/dd')), (TO_DATE('%s/%s/%s', 'yyyy/mm/dd')), '%s', '%s')",
+                        lblContadorCuentaAhorro.getText(), anioA, mesA, diaA, anioC, mesC, diaC, boxCA.getSelectedItem().toString(), lblcontadorCliente.getText());
+                OracleUtils.executeQuery(OracleUtils.getDBConexion(), sql);
+                String sqlCA = String.format("insert into cuenta_ahorro values(%s, %s)", lblContadorCuentaAhorro.getText(), txtSaldoCA.getText());
+                OracleUtils.executeQuery(OracleUtils.getDBConexion(), sqlCA);
             } else {
                 JOptionPane.showMessageDialog(rootPane, "Fecha de Cierre debera ser mayor que la de Apertura por al menos 1 año ");
             }
