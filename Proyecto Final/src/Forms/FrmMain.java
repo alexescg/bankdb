@@ -15,7 +15,7 @@ public class FrmMain extends javax.swing.JFrame {
     public FrmMain() {
         initComponents();
         
-        tipoCuentabox.addItem("a");
+        
     }
     
     
@@ -31,7 +31,6 @@ public class FrmMain extends javax.swing.JFrame {
         jPanel5 = new javax.swing.JPanel();
         tabbedPaneHeader2 = new org.edisoncor.gui.tabbedPane.TabbedPaneHeader();
         jPanel8 = new javax.swing.JPanel();
-        tipoCuentabox = new org.edisoncor.gui.comboBox.ComboBoxRound();
         nuevoClientecmd = new javax.swing.JButton();
         clienteExistentecmd = new javax.swing.JButton();
         jPanel9 = new javax.swing.JPanel();
@@ -62,12 +61,6 @@ public class FrmMain extends javax.swing.JFrame {
 
         lblUsuario.setText("Usuario");
 
-        tipoCuentabox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tipoCuentaboxActionPerformed(evt);
-            }
-        });
-
         nuevoClientecmd.setText("Nuevo Cliente");
 
         clienteExistentecmd.setText("Cliente Existente");
@@ -77,9 +70,7 @@ public class FrmMain extends javax.swing.JFrame {
         jPanel8Layout.setHorizontalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(tipoCuentabox, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
+                .addGap(150, 150, 150)
                 .addComponent(nuevoClientecmd)
                 .addGap(45, 45, 45)
                 .addComponent(clienteExistentecmd)
@@ -90,7 +81,6 @@ public class FrmMain extends javax.swing.JFrame {
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tipoCuentabox, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(nuevoClientecmd)
                     .addComponent(clienteExistentecmd))
                 .addContainerGap(25, Short.MAX_VALUE))
@@ -345,10 +335,6 @@ public class FrmMain extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField4ActionPerformed
 
-    private void tipoCuentaboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tipoCuentaboxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tipoCuentaboxActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -417,6 +403,5 @@ public class FrmMain extends javax.swing.JFrame {
     private org.edisoncor.gui.tabbedPane.TabbedPaneHeader tabbedPaneHeader2;
     private org.edisoncor.gui.tabbedPane.TabbedPaneHeader tabbedPaneHeader3;
     private org.edisoncor.gui.tabbedPane.TabbedPaneHeader tabbedPaneHeader4;
-    private org.edisoncor.gui.comboBox.ComboBoxRound tipoCuentabox;
     // End of variables declaration//GEN-END:variables
 }

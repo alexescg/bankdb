@@ -58,34 +58,9 @@ public class FrmClientes extends javax.swing.JFrame {
         txtDireccionRef1 = new javax.swing.JTextField();
         lblTelefonoRef1 = new javax.swing.JLabel();
         txtTelefonoRef1 = new javax.swing.JTextField();
-        agregarUnocmd = new org.edisoncor.gui.button.ButtonAction();
         jLabel4 = new javax.swing.JLabel();
         emailUnotxt = new javax.swing.JTextField();
-        pnlInferior2 = new javax.swing.JPanel();
-        lblNombreRef2 = new javax.swing.JLabel();
-        txtNombreRef2 = new javax.swing.JTextField();
-        txtApellidosRef2 = new javax.swing.JTextField();
-        lblApellidosRef2 = new javax.swing.JLabel();
-        lblDireccionRef2 = new javax.swing.JLabel();
-        txtDireccionRef2 = new javax.swing.JTextField();
-        lblTelefonoRef2 = new javax.swing.JLabel();
-        txtTelefonoRef2 = new javax.swing.JTextField();
-        agregarDoscmd = new org.edisoncor.gui.button.ButtonAction();
-        emailRefDostxt = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        pnlInferior3 = new javax.swing.JPanel();
-        lblNombreRef3 = new javax.swing.JLabel();
-        txtNombreRef3 = new javax.swing.JTextField();
-        txtApellidosRef3 = new javax.swing.JTextField();
-        lblApellidosRef3 = new javax.swing.JLabel();
-        lblDireccionRef3 = new javax.swing.JLabel();
-        txtDireccionRef3 = new javax.swing.JTextField();
-        lblTelefonoRef3 = new javax.swing.JLabel();
-        txtTelefonoRef3 = new javax.swing.JTextField();
-        agregarTrescmd = new org.edisoncor.gui.button.ButtonAction();
-        jLabel2 = new javax.swing.JLabel();
-        emailRefUnotxt = new javax.swing.JTextField();
-        guardarClientecmd = new org.edisoncor.gui.button.ButtonAction();
+        cmdCrearCliente = new org.edisoncor.gui.button.ButtonAction();
         jLabel1 = new javax.swing.JLabel();
         emailtxt = new javax.swing.JTextField();
 
@@ -232,8 +207,6 @@ public class FrmClientes extends javax.swing.JFrame {
 
         lblTelefonoRef1.setText("Telefono");
 
-        agregarUnocmd.setText("Agregar");
-
         jLabel4.setText("Email");
 
         emailUnotxt.addActionListener(new java.awt.event.ActionListener() {
@@ -247,36 +220,31 @@ public class FrmClientes extends javax.swing.JFrame {
         pnlInferior1Layout.setHorizontalGroup(
             pnlInferior1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlInferior1Layout.createSequentialGroup()
-                .addContainerGap(92, Short.MAX_VALUE)
+                .addContainerGap(68, Short.MAX_VALUE)
                 .addGroup(pnlInferior1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlInferior1Layout.createSequentialGroup()
+                    .addGroup(pnlInferior1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(pnlInferior1Layout.createSequentialGroup()
+                            .addComponent(lblDireccionRef1)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(txtDireccionRef1))
                         .addGroup(pnlInferior1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(pnlInferior1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(pnlInferior1Layout.createSequentialGroup()
-                                    .addComponent(lblDireccionRef1)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(txtDireccionRef1))
-                                .addGroup(pnlInferior1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlInferior1Layout.createSequentialGroup()
-                                        .addComponent(lblApellidosRef1)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(txtApellidosRef1, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(pnlInferior1Layout.createSequentialGroup()
-                                        .addComponent(lblNombreRef1)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(txtNombreRef1, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addGroup(pnlInferior1Layout.createSequentialGroup()
-                                .addGroup(pnlInferior1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblTelefonoRef1)
-                                    .addComponent(jLabel4))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlInferior1Layout.createSequentialGroup()
+                                .addComponent(lblApellidosRef1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(pnlInferior1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtTelefonoRef1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(emailUnotxt, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(37, 37, 37))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlInferior1Layout.createSequentialGroup()
-                        .addComponent(agregarUnocmd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(156, 156, 156))))
+                                .addComponent(txtApellidosRef1, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(pnlInferior1Layout.createSequentialGroup()
+                                .addComponent(lblNombreRef1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtNombreRef1, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(pnlInferior1Layout.createSequentialGroup()
+                        .addGroup(pnlInferior1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblTelefonoRef1)
+                            .addComponent(jLabel4))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(pnlInferior1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtTelefonoRef1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(emailUnotxt, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(37, 37, 37))
         );
         pnlInferior1Layout.setVerticalGroup(
             pnlInferior1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -303,185 +271,17 @@ public class FrmClientes extends javax.swing.JFrame {
                         .addComponent(jLabel4)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(emailUnotxt, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(agregarUnocmd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(61, 61, 61))
         );
 
-        tabbedPaneHeader1.addTab("Referencia 1", pnlInferior1);
+        tabbedPaneHeader1.addTab("Referencia ", pnlInferior1);
 
-        lblNombreRef2.setText("Nombre");
-
-        lblApellidosRef2.setText("Apellidos");
-
-        lblDireccionRef2.setText("Direccion");
-
-        txtDireccionRef2.addActionListener(new java.awt.event.ActionListener() {
+        cmdCrearCliente.setText("Crear");
+        cmdCrearCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtDireccionRef2ActionPerformed(evt);
+                cmdCrearClienteActionPerformed(evt);
             }
         });
-
-        lblTelefonoRef2.setText("Telefono");
-
-        agregarDoscmd.setText("Agregar");
-
-        emailRefDostxt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                emailRefDostxtActionPerformed(evt);
-            }
-        });
-
-        jLabel3.setText("Email");
-
-        javax.swing.GroupLayout pnlInferior2Layout = new javax.swing.GroupLayout(pnlInferior2);
-        pnlInferior2.setLayout(pnlInferior2Layout);
-        pnlInferior2Layout.setHorizontalGroup(
-            pnlInferior2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlInferior2Layout.createSequentialGroup()
-                .addContainerGap(92, Short.MAX_VALUE)
-                .addGroup(pnlInferior2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlInferior2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(pnlInferior2Layout.createSequentialGroup()
-                            .addComponent(lblDireccionRef2)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(txtDireccionRef2))
-                        .addGroup(pnlInferior2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlInferior2Layout.createSequentialGroup()
-                                .addComponent(lblApellidosRef2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtApellidosRef2, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(pnlInferior2Layout.createSequentialGroup()
-                                .addComponent(lblNombreRef2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtNombreRef2, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(pnlInferior2Layout.createSequentialGroup()
-                        .addGroup(pnlInferior2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblTelefonoRef2)
-                            .addComponent(jLabel3))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(pnlInferior2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtTelefonoRef2, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(pnlInferior2Layout.createSequentialGroup()
-                                .addGap(10, 10, 10)
-                                .addComponent(agregarDoscmd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(emailRefDostxt, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(37, 37, 37))
-        );
-        pnlInferior2Layout.setVerticalGroup(
-            pnlInferior2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlInferior2Layout.createSequentialGroup()
-                .addGap(36, 36, 36)
-                .addGroup(pnlInferior2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblNombreRef2)
-                    .addComponent(txtNombreRef2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(pnlInferior2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblApellidosRef2)
-                    .addComponent(txtApellidosRef2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(pnlInferior2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtDireccionRef2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblDireccionRef2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(pnlInferior2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblTelefonoRef2)
-                    .addComponent(txtTelefonoRef2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(pnlInferior2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
-                    .addComponent(emailRefDostxt, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(agregarDoscmd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(15, Short.MAX_VALUE))
-        );
-
-        tabbedPaneHeader1.addTab("Referencia 2", pnlInferior2);
-
-        lblNombreRef3.setText("Nombre");
-
-        lblApellidosRef3.setText("Apellidos");
-
-        lblDireccionRef3.setText("Direccion");
-
-        txtDireccionRef3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtDireccionRef3ActionPerformed(evt);
-            }
-        });
-
-        lblTelefonoRef3.setText("Telefono");
-
-        agregarTrescmd.setText("Agregar");
-
-        jLabel2.setText("Email");
-
-        javax.swing.GroupLayout pnlInferior3Layout = new javax.swing.GroupLayout(pnlInferior3);
-        pnlInferior3.setLayout(pnlInferior3Layout);
-        pnlInferior3Layout.setHorizontalGroup(
-            pnlInferior3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlInferior3Layout.createSequentialGroup()
-                .addContainerGap(92, Short.MAX_VALUE)
-                .addGroup(pnlInferior3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlInferior3Layout.createSequentialGroup()
-                        .addGroup(pnlInferior3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(pnlInferior3Layout.createSequentialGroup()
-                                .addComponent(lblTelefonoRef3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtTelefonoRef3, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(pnlInferior3Layout.createSequentialGroup()
-                                .addComponent(lblDireccionRef3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtDireccionRef3))
-                            .addGroup(pnlInferior3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlInferior3Layout.createSequentialGroup()
-                                    .addComponent(lblApellidosRef3)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(txtApellidosRef3, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(pnlInferior3Layout.createSequentialGroup()
-                                    .addComponent(lblNombreRef3)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(txtNombreRef3, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(pnlInferior3Layout.createSequentialGroup()
-                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(emailRefUnotxt)))
-                        .addGap(37, 37, 37))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlInferior3Layout.createSequentialGroup()
-                        .addComponent(agregarTrescmd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(160, 160, 160))))
-        );
-        pnlInferior3Layout.setVerticalGroup(
-            pnlInferior3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlInferior3Layout.createSequentialGroup()
-                .addGap(36, 36, 36)
-                .addGroup(pnlInferior3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblNombreRef3)
-                    .addComponent(txtNombreRef3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(pnlInferior3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblApellidosRef3)
-                    .addComponent(txtApellidosRef3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(pnlInferior3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtDireccionRef3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblDireccionRef3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(pnlInferior3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblTelefonoRef3)
-                    .addComponent(txtTelefonoRef3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(pnlInferior3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addComponent(emailRefUnotxt, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(agregarTrescmd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        tabbedPaneHeader1.addTab("Referencia 3", pnlInferior3);
-
-        guardarClientecmd.setText("Guardar");
 
         jLabel1.setText("Email");
 
@@ -491,17 +291,20 @@ public class FrmClientes extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(pnlPrincipal, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(pnlSuperior, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(tabbedPaneHeader1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(guardarClientecmd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGap(89, 89, 89)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(emailtxt, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(cmdCrearCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tabbedPaneHeader1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -515,10 +318,10 @@ public class FrmClientes extends javax.swing.JFrame {
                         .addGap(1, 1, 1)
                         .addComponent(emailtxt, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(24, 24, 24)
                 .addComponent(tabbedPaneHeader1, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(guardarClientecmd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cmdCrearCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(15, Short.MAX_VALUE))
         );
 
@@ -537,25 +340,17 @@ public class FrmClientes extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtAnioActionPerformed
 
-    private void txtDireccionRef3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDireccionRef3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtDireccionRef3ActionPerformed
-
-    private void txtDireccionRef2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDireccionRef2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtDireccionRef2ActionPerformed
-
     private void txtDireccionRef1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDireccionRef1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtDireccionRef1ActionPerformed
 
-    private void emailRefDostxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailRefDostxtActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_emailRefDostxtActionPerformed
-
     private void emailUnotxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailUnotxtActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_emailUnotxtActionPerformed
+
+    private void cmdCrearClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdCrearClienteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmdCrearClienteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -596,65 +391,40 @@ public class FrmClientes extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private org.edisoncor.gui.button.ButtonAction agregarDoscmd;
-    private org.edisoncor.gui.button.ButtonAction agregarTrescmd;
-    private org.edisoncor.gui.button.ButtonAction agregarUnocmd;
     private org.edisoncor.gui.util.BrightPassFilter brightPassFilter1;
-    private javax.swing.JTextField emailRefDostxt;
-    private javax.swing.JTextField emailRefUnotxt;
+    private org.edisoncor.gui.button.ButtonAction cmdCrearCliente;
     private javax.swing.JTextField emailUnotxt;
     private javax.swing.JTextField emailtxt;
-    private org.edisoncor.gui.button.ButtonAction guardarClientecmd;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JSeparator jSeparator2;
     private org.edisoncor.gui.label.LabelHeader labelHeader1;
     private javax.swing.JLabel lblAnio;
     private javax.swing.JLabel lblApellidos;
     private javax.swing.JLabel lblApellidosRef1;
-    private javax.swing.JLabel lblApellidosRef2;
-    private javax.swing.JLabel lblApellidosRef3;
     private javax.swing.JLabel lblDireccion;
     private javax.swing.JLabel lblDireccionRef1;
-    private javax.swing.JLabel lblDireccionRef2;
-    private javax.swing.JLabel lblDireccionRef3;
     private javax.swing.JLabel lblFechaNacimiento;
     private javax.swing.JLabel lblMes;
     private javax.swing.JLabel lblNombre;
     private javax.swing.JLabel lblNombreRef1;
-    private javax.swing.JLabel lblNombreRef2;
-    private javax.swing.JLabel lblNombreRef3;
     private javax.swing.JLabel lblTelefono;
     private javax.swing.JLabel lblTelefonoRef1;
-    private javax.swing.JLabel lblTelefonoRef2;
-    private javax.swing.JLabel lblTelefonoRef3;
     private javax.swing.JPanel pnlInferior1;
-    private javax.swing.JPanel pnlInferior2;
-    private javax.swing.JPanel pnlInferior3;
     private javax.swing.JPanel pnlPrincipal;
     private javax.swing.JPanel pnlSuperior;
     private org.edisoncor.gui.tabbedPane.TabbedPaneHeader tabbedPaneHeader1;
     private javax.swing.JTextField txtAnio;
     private javax.swing.JTextField txtApellidos;
     private javax.swing.JTextField txtApellidosRef1;
-    private javax.swing.JTextField txtApellidosRef2;
-    private javax.swing.JTextField txtApellidosRef3;
     private javax.swing.JTextField txtDia;
     private javax.swing.JTextField txtDireccion;
     private javax.swing.JTextField txtDireccionRef1;
-    private javax.swing.JTextField txtDireccionRef2;
-    private javax.swing.JTextField txtDireccionRef3;
     private javax.swing.JTextField txtMes;
     private javax.swing.JTextField txtNombre;
     private javax.swing.JTextField txtNombreRef1;
-    private javax.swing.JTextField txtNombreRef2;
-    private javax.swing.JTextField txtNombreRef3;
     private javax.swing.JTextField txtTelefono;
     private javax.swing.JTextField txtTelefonoRef1;
-    private javax.swing.JTextField txtTelefonoRef2;
-    private javax.swing.JTextField txtTelefonoRef3;
     // End of variables declaration//GEN-END:variables
 
 
