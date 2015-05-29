@@ -20,7 +20,8 @@ public class FrmClientes extends javax.swing.JFrame {
     
     public FrmClientes() {
         initComponents();
-        
+        setSize(800, 400);
+
     }
     
     @SuppressWarnings("unchecked")
