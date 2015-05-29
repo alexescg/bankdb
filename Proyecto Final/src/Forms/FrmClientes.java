@@ -47,6 +47,7 @@ public class FrmClientes extends javax.swing.JFrame {
         txtDia = new javax.swing.JTextField();
         jSeparator2 = new javax.swing.JSeparator();
         pnlSuperior = new javax.swing.JPanel();
+        labelHeader1 = new org.edisoncor.gui.label.LabelHeader();
         tabbedPaneHeader1 = new org.edisoncor.gui.tabbedPane.TabbedPaneHeader();
         pnlInferior1 = new javax.swing.JPanel();
         lblNombreRef1 = new javax.swing.JLabel();
@@ -199,15 +200,22 @@ public class FrmClientes extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        labelHeader1.setText("Cliente");
+
         javax.swing.GroupLayout pnlSuperiorLayout = new javax.swing.GroupLayout(pnlSuperior);
         pnlSuperior.setLayout(pnlSuperiorLayout);
         pnlSuperiorLayout.setHorizontalGroup(
             pnlSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(pnlSuperiorLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(labelHeader1, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnlSuperiorLayout.setVerticalGroup(
             pnlSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 39, Short.MAX_VALUE)
+            .addGroup(pnlSuperiorLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(labelHeader1, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE))
         );
 
         lblNombreRef1.setText("Nombre");
@@ -511,7 +519,7 @@ public class FrmClientes extends javax.swing.JFrame {
                 .addComponent(tabbedPaneHeader1, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(guardarClientecmd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         pack();
@@ -602,6 +610,7 @@ public class FrmClientes extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JSeparator jSeparator2;
+    private org.edisoncor.gui.label.LabelHeader labelHeader1;
     private javax.swing.JLabel lblAnio;
     private javax.swing.JLabel lblApellidos;
     private javax.swing.JLabel lblApellidosRef1;
