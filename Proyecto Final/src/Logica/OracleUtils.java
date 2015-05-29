@@ -24,11 +24,19 @@ import javax.swing.JComboBox;
 public class OracleUtils {
     
      private static final String url = "jdbc:oracle:thin:@localhost:1521:XE";
-    private static final  String usuario ="labs";
-    private static final String contrasena = "abcd1234";
+    private static final  String usuario ="banco";
+    private static final String contrasena = "1234";
     private static Connection con;
     private static Statement st;
     private static String query = null;
+    public static final String BURO_SEQ = "BURO_SEQ.nextval";
+    public static final String CLIENTE_SEQ = "CLIENTE_SEQ.nextval";
+    public static final String CUENTAS_SEQ = "CUENTAS_SEQ.NEXTVAL";
+    public static final String EMPLEADOS_SEQ = "EMPLEADOS_SEQ.NEXTVAL";
+    public static final String MOVIMIENTO_SEQ = "MOVIMIENTOS_SEQ.NEXTVAL";
+    public static final String REFERENCIAS_SEQ = "REFERENCIAS_SEQ.NEXTVAL";
+    public static final String SEGUROS_SEQ = "SEGUROS_SEQ.NEXTVAL";
+    
     
     
     
@@ -152,7 +160,7 @@ public class OracleUtils {
      * @param str
      * @return
      */
-    public static Boolean isNumeric(String str) {
+    public static Boolean esNumeroValido(String str) {
         try {
             double d = Double.parseDouble(str.trim());
         } catch (NumberFormatException e) {
@@ -167,7 +175,7 @@ public class OracleUtils {
      * @param str
      * @return
      */
-    public static Boolean isValidString(String str) {
+    public static Boolean esCadenaValida(String str) {
         return str != null && !str.isEmpty() && !str.trim().isEmpty();
     }
 

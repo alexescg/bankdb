@@ -1,30 +1,30 @@
-
 package Forms;
 
 import Logica.Cliente;
 import Logica.MetodosSQL;
+import Logica.OracleUtils;
 import Logica.Referencias;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
+import java.util.List;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author Edgar
  */
 public class FrmClientes extends javax.swing.JFrame {
-    
+
     MetodosSQL metodos = new MetodosSQL();
     Cliente cliente = new Cliente();
     Referencias referencias = new Referencias();
     
+
     String Fecha;
-    
+
     public FrmClientes() {
         initComponents();
-        
+
     }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -233,6 +233,11 @@ public class FrmClientes extends javax.swing.JFrame {
         lblTelefonoRef1.setText("Telefono");
 
         agregarUnocmd.setText("Agregar");
+        agregarUnocmd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                agregarUnocmdActionPerformed(evt);
+            }
+        });
 
         jLabel4.setText("Email");
 
@@ -482,6 +487,11 @@ public class FrmClientes extends javax.swing.JFrame {
         tabbedPaneHeader1.addTab("Referencia 3", pnlInferior3);
 
         guardarClientecmd.setText("Guardar");
+        guardarClientecmd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                guardarClientecmdActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Email");
 
@@ -557,9 +567,88 @@ public class FrmClientes extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_emailUnotxtActionPerformed
 
+    private void guardarClientecmdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarClientecmdActionPerformed
+
+        //Validacion Cliente
+        if (OracleUtils.esCadenaValida(txtNombre.getText())
+                && OracleUtils.esCadenaValida(txtApellidos.getText())
+                && OracleUtils.esCadenaValida(txtDireccion.getText())
+                //Fecha
+                && OracleUtils.esNumeroValido(txtDia.getText())
+                && OracleUtils.esNumeroValido(txtMes.getText())
+                && OracleUtils.esNumeroValido(txtAnio.getText()) && Integer.parseInt(txtAnio.getText()) > 1950
+                && OracleUtils.esNumeroValido(txtTelefono.getText())
+                && OracleUtils.esCadenaValida(emailtxt.getText())) {
+
+            String nombre = txtNombre.getText(); 
+            String apellidos = txtApellidos.getText();
+            String direccion = txtDireccion.getText();
+            
+            String dia = txtDia.getText();
+            String mes = txtMes.getText();
+            String ano = txtAnio.getText();
+
+            String telefono = txtTelefono.getText();
+            String correo = emailtxt.getText();
+            
+                 {
+            //(TO_DATE('2003/05/03 21:02:44', 'yyyy/mm/dd hh24:mi:ss'));
+            String sql = String.format("insert into clientes values(%s, '%s', '%s', '%s', (TO_DATE('%s/%s/%s', 'yyyy/mm/dd')), %s, '%s')",
+                    OracleUtils.CLIENTE_SEQ ,nombre, apellidos, direccion, ano, mes, dia, telefono, correo);
+                OracleUtils.executeQuery(OracleUtils.getDBConexion(), sql);
+                     System.out.println("sql = " + sql);
+            }
+        }else{
+            JOptionPane.showMessageDialog(rootPane, "Hay valores que no cumplen con los requisitos, favor de verificar...");
+        }
+
+    }//GEN-LAST:event_guardarClientecmdActionPerformed
+
+    private void agregarUnocmdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarUnocmdActionPerformed
+        // TODO add your handling code here:
+        if (OracleUtils.esCadenaValida(txtNombreRef1.getText())
+        &&  OracleUtils.esCadenaValida(txtApellidosRef1.getText())
+        &&  OracleUtils.esCadenaValida(txtDireccionRef1.getText())
+        &&  OracleUtils.esNumeroValido(txtTelefonoRef1.getText())
+        &&  OracleUtils.esCadenaValida(emailUnotxt.getText())){
+            
+            //referencia
+        String nombreRef = txtNombreRef1.getText();
+        String apellidoRef = txtApellidosRef1.getText();
+        String direccionRef = txtDireccionRef1.getText();
+        String telefonoRef = txtTelefonoRef1.getText();
+        String emailRef = emailUnotxt.getText();
+            
+            //Cliente Search
+            String nombre = txtNombre.getText(); 
+            String apellidos = txtApellidos.getText();
+            String direccion = txtDireccion.getText();
+            
+            String dia = txtDia.getText();
+            String mes = txtMes.getText();
+            String ano = txtAnio.getText();
+
+            String telefono = txtTelefono.getText();
+            String correo = emailtxt.getText();
+            
+                 {
+            //(TO_DATE('2003/05/03 21:02:44', 'yyyy/mm/dd hh24:mi:ss'));
+//            String sql = String.format("select * from clientes where nombre like '%s' and apellido like '%s' and telefono like '%s' and fecha like '(TO_DATE('%s/%s/%s', 'yyyy/mm/dd'))' and correo like '%s')",
+//                    nombre, apellidos, direccion, telefono, ano, mes, dia, correo);
+//                     System.out.println("sql = " + sql);
+            
+            //List<Cliente> clientes = OracleUtils.select(OracleUtils.getDBConexion(), sql, Cliente.class);
+            
+            
+        }}
+        
+        
+        
+    }//GEN-LAST:event_agregarUnocmdActionPerformed
+
     /**
-     * @param args the command line arguments
-     */
+         * @param args the command line arguments
+         */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -656,6 +745,5 @@ public class FrmClientes extends javax.swing.JFrame {
     private javax.swing.JTextField txtTelefonoRef2;
     private javax.swing.JTextField txtTelefonoRef3;
     // End of variables declaration//GEN-END:variables
-
 
 }

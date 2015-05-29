@@ -122,13 +122,11 @@
                         <DimensionLayout dim="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="tipoCuentabox" min="-2" pref="111" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="148" max="-2" attributes="0"/>
                                   <Component id="nuevoClientecmd" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
                                   <Component id="clienteExistentecmd" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace pref="245" max="32767" attributes="0"/>
+                                  <EmptySpace pref="261" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
@@ -137,25 +135,22 @@
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="tipoCuentabox" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                                       <Component id="nuevoClientecmd" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="clienteExistentecmd" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace pref="25" max="32767" attributes="0"/>
+                                  <EmptySpace pref="29" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
                       </Layout>
                       <SubComponents>
-                        <Component class="org.edisoncor.gui.comboBox.ComboBoxRound" name="tipoCuentabox">
-                          <Events>
-                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tipoCuentaboxActionPerformed"/>
-                          </Events>
-                        </Component>
                         <Component class="javax.swing.JButton" name="nuevoClientecmd">
                           <Properties>
                             <Property name="text" type="java.lang.String" value="Nuevo Cliente"/>
                           </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="nuevoClientecmdActionPerformed"/>
+                          </Events>
                         </Component>
                         <Component class="javax.swing.JButton" name="clienteExistentecmd">
                           <Properties>
