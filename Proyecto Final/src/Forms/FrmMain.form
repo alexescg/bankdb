@@ -262,12 +262,12 @@
                                       <Group type="102" attributes="0">
                                           <Component id="jLabel6" min="-2" pref="64" max="-2" attributes="0"/>
                                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          <Component id="jTextField5" max="32767" attributes="0"/>
+                                          <Component id="txtImporte" max="32767" attributes="0"/>
                                       </Group>
                                       <Group type="102" attributes="0">
                                           <Component id="jLabel2" min="-2" pref="79" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="jTextField4" min="-2" pref="283" max="-2" attributes="0"/>
+                                          <Component id="txtIdCuenta" min="-2" pref="283" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                                   <EmptySpace pref="154" max="32767" attributes="0"/>
@@ -284,7 +284,7 @@
                                           <EmptySpace max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="3" attributes="0">
                                               <Component id="jLabel2" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
-                                              <Component id="jTextField4" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
+                                              <Component id="txtIdCuenta" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                       <Group type="102" alignment="0" attributes="0">
@@ -295,7 +295,7 @@
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jTextField5" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="txtImporte" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace pref="49" max="32767" attributes="0"/>
                               </Group>
@@ -308,9 +308,9 @@
                             <Property name="text" type="java.lang.String" value="Id Cuenta:"/>
                           </Properties>
                         </Component>
-                        <Component class="javax.swing.JTextField" name="jTextField4">
+                        <Component class="javax.swing.JTextField" name="txtIdCuenta">
                           <Events>
-                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField4ActionPerformed"/>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtIdCuentaActionPerformed"/>
                           </Events>
                         </Component>
                         <Component class="javax.swing.JLabel" name="jLabel6">
@@ -318,7 +318,7 @@
                             <Property name="text" type="java.lang.String" value="Importe:"/>
                           </Properties>
                         </Component>
-                        <Component class="javax.swing.JTextField" name="jTextField5">
+                        <Component class="javax.swing.JTextField" name="txtImporte">
                         </Component>
                         <Component class="javax.swing.JButton" name="jButton8">
                           <Properties>

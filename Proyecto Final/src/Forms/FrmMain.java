@@ -1,7 +1,12 @@
-
 package Forms;
 
+import Logica.Cuenta;
+import Logica.CuentaAhorro;
 import Logica.MetodosSQL;
+import Logica.OracleUtils;
+import java.math.BigDecimal;
+import java.util.List;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -9,16 +14,13 @@ import Logica.MetodosSQL;
  */
 public class FrmMain extends javax.swing.JFrame {
 
-    FrmClientes frmClientes = new FrmClientes();
-    MetodosSQL metodos = new MetodosSQL();
-    
+    List<Cuenta> cuentas = (List<Cuenta>) OracleUtils.select(OracleUtils.getDBConexion(), "select * from cuentas", Cuenta.class);
+    BigDecimal saldo = new BigDecimal(0);
+
     public FrmMain() {
         initComponents();
-        
 
     }
-    
-    
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -41,9 +43,9 @@ public class FrmMain extends javax.swing.JFrame {
         tabbedPaneHeader4 = new org.edisoncor.gui.tabbedPane.TabbedPaneHeader();
         jPanel11 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
+        txtIdCuenta = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
+        txtImporte = new javax.swing.JTextField();
         jButton8 = new javax.swing.JButton();
         jPanel12 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -75,7 +77,7 @@ public class FrmMain extends javax.swing.JFrame {
         jPanel8Layout.setHorizontalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
-                .addGap(148, 148, 148)
+                .addGap(150, 150, 150)
                 .addComponent(nuevoClientecmd)
                 .addGap(45, 45, 45)
                 .addComponent(clienteExistentecmd)
@@ -140,9 +142,9 @@ public class FrmMain extends javax.swing.JFrame {
 
         jLabel2.setText("Id Cuenta:");
 
-        jTextField4.addActionListener(new java.awt.event.ActionListener() {
+        txtIdCuenta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField4ActionPerformed(evt);
+                txtIdCuentaActionPerformed(evt);
             }
         });
 
@@ -165,11 +167,11 @@ public class FrmMain extends javax.swing.JFrame {
                     .addGroup(jPanel11Layout.createSequentialGroup()
                         .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jTextField5))
+                        .addComponent(txtImporte))
                     .addGroup(jPanel11Layout.createSequentialGroup()
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txtIdCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 154, Short.MAX_VALUE)
                 .addComponent(jButton8)
                 .addGap(71, 71, 71))
@@ -182,14 +184,14 @@ public class FrmMain extends javax.swing.JFrame {
                         .addContainerGap()
                         .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(txtIdCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel11Layout.createSequentialGroup()
                         .addGap(27, 27, 27)
                         .addComponent(jButton8)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtImporte, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(49, Short.MAX_VALUE))
         );
 
@@ -330,22 +332,41 @@ public class FrmMain extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-        // TODO add your handling code here:
+        if (cuentas.stream().anyMatch(cuenta -> ("" + cuenta.getId_cuenta()).equals(txtIdCuenta.getText()))) {
+            List<CuentaAhorro> cuentasAhorros = (List<CuentaAhorro>) OracleUtils.select(OracleUtils.getDBConexion(), String.format("select * from cuenta_ahorro where id_cuenta = %s", txtIdCuenta.getText()), CuentaAhorro.class);
+            cuentas.stream().forEach(cuenta -> {
+                    if (cuenta.getId_cuenta() == cuentasAhorros.get(0).getId_cuenta()) {
+                        saldo = cuentasAhorros.get(0).getSaldo();
+                    }
+                });
+            Integer saldoAsInt = Integer.parseInt("" + saldo);
+            System.out.println("saldo" + saldo);
+            if (saldoAsInt - Integer.parseInt(txtImporte.getText()) < 0) {
+                String sql = String.format("update cuenta_ahorro set saldo = %s", saldoAsInt - Integer.parseInt(txtImporte.getText()));
+                OracleUtils.executeQuery(OracleUtils.getDBConexion(), sql);
+                JOptionPane.showMessageDialog(rootPane, "Agregado con exito");
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "El valor a retirar no puede exceder la cantidad maxima");
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "El numero de cuenta no existe");
+        }
+
+
     }//GEN-LAST:event_jButton8ActionPerformed
 
-    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
+    private void txtIdCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdCuentaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField4ActionPerformed
-
+    }//GEN-LAST:event_txtIdCuentaActionPerformed
 
 
     private void nuevoClientecmdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevoClientecmdActionPerformed
         // TODO add your handling code here:
         FrmClientes fClientes = new FrmClientes();
         fClientes.setVisible(true);
-        
-    }//GEN-LAST:event_nuevoClientecmdActionPerformed
 
+    }//GEN-LAST:event_nuevoClientecmdActionPerformed
 
     /**
      * @param args the command line arguments
@@ -406,8 +427,6 @@ public class FrmMain extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
     private javax.swing.JLabel lblUsuario;
     private javax.swing.JButton nuevoClientecmd;
@@ -415,5 +434,7 @@ public class FrmMain extends javax.swing.JFrame {
     private org.edisoncor.gui.tabbedPane.TabbedPaneHeader tabbedPaneHeader2;
     private org.edisoncor.gui.tabbedPane.TabbedPaneHeader tabbedPaneHeader3;
     private org.edisoncor.gui.tabbedPane.TabbedPaneHeader tabbedPaneHeader4;
+    private javax.swing.JTextField txtIdCuenta;
+    private javax.swing.JTextField txtImporte;
     // End of variables declaration//GEN-END:variables
 }
