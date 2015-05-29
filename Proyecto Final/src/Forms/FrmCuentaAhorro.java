@@ -5,17 +5,40 @@
  */
 package Forms;
 
+import Logica.Cliente;
+import Logica.OracleUtils;
+import java.util.List;
+import java.util.Random;
+import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Krystel
  */
 public class FrmCuentaAhorro extends javax.swing.JFrame {
 
+    Random r = new Random();
+
     /**
      * Creates new form FrmCuentaAhorro
      */
     public FrmCuentaAhorro() {
         initComponents();
+    }
+
+    public FrmCuentaAhorro(Cliente c) {
+        initComponents();
+        lblcontadorCliente.setText("" + c.getId_cliente());
+        lblContadorCuentaAhorro.setText("" + r.nextInt(1000));
+        boxCA =  new JComboBox(Estado.values());
+        Estado[] estados = Estado.values();
+        for (Estado estado : estados) {
+            boxCA.addItem(estado);
+        }
+//        for (Estado estado : estados) {
+//            boxCA.addItem(estado);
+//        }
     }
 
     /**
@@ -63,6 +86,12 @@ public class FrmCuentaAhorro extends javax.swing.JFrame {
 
         jLabel4.setText("Dia:");
 
+        txtDiaApCA.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtDiaApCAActionPerformed(evt);
+            }
+        });
+
         jLabel5.setText("Mes:");
 
         lblAnio.setText("Año");
@@ -85,15 +114,13 @@ public class FrmCuentaAhorro extends javax.swing.JFrame {
                         .addGap(21, 21, 21)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(jLabel4)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(txtDiaApCA))
-                                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtDiaApCA))
+                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -134,7 +161,7 @@ public class FrmCuentaAhorro extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(lblContadorCuentaAhorro))
+                    .addComponent(lblContadorCuentaAhorro, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(27, 27, 27)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -159,6 +186,11 @@ public class FrmCuentaAhorro extends javax.swing.JFrame {
         );
 
         cmdGuardarCA.setText("Guardar");
+        cmdGuardarCA.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdGuardarCAActionPerformed(evt);
+            }
+        });
 
         jLabel10.setText("Estado: ");
 
@@ -199,11 +231,52 @@ public class FrmCuentaAhorro extends javax.swing.JFrame {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(boxCA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void txtDiaApCAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDiaApCAActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtDiaApCAActionPerformed
+
+    private void cmdGuardarCAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdGuardarCAActionPerformed
+        
+        if (OracleUtils.esNumeroValido(txtDiaApCA.getText()) && Integer.parseInt(txtDiaApCA.getText()) <= 31
+                && OracleUtils.esNumeroValido(txtMesApCA.getText()) && Integer.parseInt(txtMesApCA.getText()) <= 12
+                && OracleUtils.esNumeroValido(txtAnioApCA.getText()) && Integer.parseInt(txtAnioApCA.getText()) >= 1915
+        
+        && OracleUtils.esNumeroValido(txtDiaCierreCA.getText()) && Integer.parseInt(txtDiaCierreCA.getText()) <= 31
+                && OracleUtils.esNumeroValido(txtMesCierreCA.getText()) && Integer.parseInt(txtMesCierreCA.getText()) <= 12
+                && OracleUtils.esNumeroValido(txtAnioCierreCA.getText()) && Integer.parseInt(txtAnioCierreCA.getText()) > 1915){
+            if ( Integer.parseInt(txtAnioCierreCA.getText()) - Integer.parseInt(txtAnioApCA.getText()) > 1) {
+                
+               // String sql = 
+                //OracleUtils.executeQuery(OracleUtils.getDBConexion(), );
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+            } else{
+                JOptionPane.showMessageDialog(rootPane, "Fecha de Cierre debera ser mayor que la de Apertura por al menos 1 año ");
+            }
+            
+            
+        }else{
+            JOptionPane.showMessageDialog(rootPane, "Favor de insertar valores adecuados para los campos");
+            
+        }
+        
+        
+    }//GEN-LAST:event_cmdGuardarCAActionPerformed
 
     /**
      * @param args the command line arguments

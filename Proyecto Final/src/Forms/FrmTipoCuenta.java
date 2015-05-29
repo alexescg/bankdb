@@ -5,17 +5,25 @@
  */
 package Forms;
 
+import Logica.Cliente;
+
 /**
  *
  * @author Krystel
  */
 public class FrmTipoCuenta extends javax.swing.JFrame {
 
+    Cliente c;
     /**
      * Creates new form FrmTipoCuenta
      */
     public FrmTipoCuenta() {
         initComponents();
+    }
+
+    public FrmTipoCuenta(Cliente cliente) {
+        initComponents();
+        c = cliente;
     }
 
     /**
@@ -33,6 +41,11 @@ public class FrmTipoCuenta extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         buttonAction1.setText("Ahorro");
+        buttonAction1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonAction1ActionPerformed(evt);
+            }
+        });
 
         buttonAction2.setText("Credito/Cheques");
 
@@ -59,6 +72,12 @@ public class FrmTipoCuenta extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void buttonAction1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAction1ActionPerformed
+        FrmCuentaAhorro frmCuentaAhorro = new FrmCuentaAhorro(c);
+        frmCuentaAhorro.setVisible(true);
+        
+    }//GEN-LAST:event_buttonAction1ActionPerformed
 
     /**
      * @param args the command line arguments

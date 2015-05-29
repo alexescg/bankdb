@@ -13,19 +13,16 @@ import javax.swing.JOptionPane;
  * @author Edgar
  */
 public class FrmClientes extends javax.swing.JFrame {
-
+    
     private Boolean isReady = false;
-    MetodosSQL metodos = new MetodosSQL();
-    Cliente cliente = new Cliente();
-    Referencias referencias = new Referencias();
-
-    String Fecha;
-
+    private Boolean canAdvance = false;
+    private Cliente cliente;
+    
     public FrmClientes() {
         initComponents();
-
+        
     }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -66,6 +63,7 @@ public class FrmClientes extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         emailtxt = new javax.swing.JTextField();
         cmdCrearCliente = new org.edisoncor.gui.button.ButtonAction();
+        cmdSig = new org.edisoncor.gui.button.ButtonAction();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -305,6 +303,13 @@ public class FrmClientes extends javax.swing.JFrame {
             }
         });
 
+        cmdSig.setText("Siguiente Paso");
+        cmdSig.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdSigguardarClientecmdActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -326,7 +331,10 @@ public class FrmClientes extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(121, 121, 121)
                                 .addComponent(cmdCrearCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(cmdSig, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -343,8 +351,10 @@ public class FrmClientes extends javax.swing.JFrame {
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(cmdCrearCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(tabbedPaneHeader1, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
+                .addComponent(cmdSig, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -380,21 +390,21 @@ public class FrmClientes extends javax.swing.JFrame {
                 //Fecha
                 && OracleUtils.esNumeroValido(txtDia.getText()) && Integer.parseInt(txtDia.getText()) <= 31
                 && OracleUtils.esNumeroValido(txtMes.getText()) && Integer.parseInt(txtMes.getText()) <= 12
-                && OracleUtils.esNumeroValido(txtAnio.getText()) && Integer.parseInt(txtAnio.getText()) >= 1950
+                && OracleUtils.esNumeroValido(txtAnio.getText()) && Integer.parseInt(txtAnio.getText()) >= 1915
                 && OracleUtils.esNumeroValido(txtTelefono.getText())
                 && OracleUtils.esCadenaValida(emailtxt.getText())) {
-
+            
             String nombre = txtNombre.getText();
             String apellidos = txtApellidos.getText();
             String direccion = txtDireccion.getText();
-
+            
             String dia = txtDia.getText();
             String mes = txtMes.getText();
             String ano = txtAnio.getText();
-
+            
             String telefono = txtTelefono.getText();
             String correo = emailtxt.getText();
-
+            
             {
                 //(TO_DATE('2003/05/03 21:02:44', 'yyyy/mm/dd hh24:mi:ss'));
                 String sql = String.format("insert into clientes values(%s, '%s', '%s', '%s', (TO_DATE('%s/%s/%s', 'yyyy/mm/dd')), %s, '%s')",
@@ -411,14 +421,14 @@ public class FrmClientes extends javax.swing.JFrame {
     }//GEN-LAST:event_guardarClientecmdActionPerformed
 
     private void agregarUnocmdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarUnocmdActionPerformed
-
+        
 
     }//GEN-LAST:event_agregarUnocmdActionPerformed
 
     private void btnagregarRefActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnagregarRefActionPerformed
-
+        
         if (isReady) {
-
+            
             if (OracleUtils.esCadenaValida(txtNombreRef1.getText())
                     && OracleUtils.esCadenaValida(txtApellidosRef1.getText())
                     && OracleUtils.esCadenaValida(txtDireccionRef1.getText())
@@ -436,21 +446,22 @@ public class FrmClientes extends javax.swing.JFrame {
                 String nombre = txtNombre.getText();
                 String apellidos = txtApellidos.getText();
                 String direccion = txtDireccion.getText();
-
+                
                 String telefono = txtTelefono.getText();
                 String correo = emailtxt.getText();
-
+                
                 String sql = String.format("select * from clientes where nombre_cliente like '%s' and apellidos_cliente like '%s' and telefono like '%s'  and direccion_cliente like '%s' and email like '%s'",
                         nombre, apellidos, telefono, direccion, correo);
-
+                
                 List<Cliente> clientes = (List<Cliente>) OracleUtils.select(OracleUtils.getDBConexion(), sql, Cliente.class);
-
+                
                 String sqlRef = String.format("insert into referencias values(%s, '%s', '%s', '%s', '%s', %s, '%s')", OracleUtils.REFERENCIAS_SEQ, nombreRef,
                         apellidoRef, telefonoRef, direccionRef, clientes.get(0).getId_cliente(), emailRef);
                 OracleUtils.executeQuery(OracleUtils.getDBConexion(), sqlRef);
                 JOptionPane.showMessageDialog(rootPane, "Referencia Añadida exitosamente.");
+                canAdvance = true;
             } else {
-
+                
                 JOptionPane.showMessageDialog(rootPane, "Valoress invalidos en los campos de Referencia, favor de verificar");
             }
         } else {
@@ -458,6 +469,29 @@ public class FrmClientes extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_btnagregarRefActionPerformed
+
+    private void cmdSigguardarClientecmdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdSigguardarClientecmdActionPerformed
+
+        if (canAdvance) {
+            
+        String nombre = txtNombre.getText();
+        String apellidos = txtApellidos.getText();
+        String direccion = txtDireccion.getText();
+        String telefono = txtTelefono.getText();
+        String correo = emailtxt.getText();
+        
+        String sql = String.format("select * from clientes where nombre_cliente like '%s' and apellidos_cliente like '%s' and telefono like '%s'  and direccion_cliente like '%s' and email like '%s'",
+                nombre, apellidos, telefono, direccion, correo);
+        
+        List<Cliente> clientes = (List<Cliente>) OracleUtils.select(OracleUtils.getDBConexion(), sql, Cliente.class);
+        cliente = clientes.get(0);
+        FrmTipoCuenta frmTipoCuenta = new FrmTipoCuenta(cliente);
+        frmTipoCuenta.setVisible(true);
+        } else {
+        JOptionPane.showMessageDialog(rootPane, "Debes contar con al menos una referencia");
+        }
+        
+    }//GEN-LAST:event_cmdSigguardarClientecmdActionPerformed
     /**
      * @param args the command line arguments
      */
@@ -501,6 +535,7 @@ public class FrmClientes extends javax.swing.JFrame {
     private org.edisoncor.gui.util.BrightPassFilter brightPassFilter1;
     private javax.swing.JButton btnagregarRef;
     private org.edisoncor.gui.button.ButtonAction cmdCrearCliente;
+    private org.edisoncor.gui.button.ButtonAction cmdSig;
     private javax.swing.JTextField emailUnotxt;
     private javax.swing.JTextField emailtxt;
     private javax.swing.JLabel jLabel1;
