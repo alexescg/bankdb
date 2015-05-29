@@ -25,22 +25,21 @@ public class Cliente extends Persona{
     
     private String telefono;
     
-    private BigDecimal pin;
     
     private MetodosSQL metodos = new MetodosSQL();
 
     public Cliente() {
     }
 
-    public Cliente(BigDecimal id_cliente, String nombre_cliente, String apellido_cliente, String direccion_cliente, Timestamp f_nacimiento_cliente, String telefono, BigDecimal pin) {
+    public Cliente(BigDecimal id_cliente, String nombre_cliente, String apellido_cliente, String direccion_cliente, Timestamp f_nacimiento_cliente, String telefono) {
         this.id_cliente = id_cliente;
         this.nombre_cliente = nombre_cliente;
         this.apellido_cliente = apellido_cliente;
         this.direccion_cliente = direccion_cliente;
         this.f_nacimiento_cliente = f_nacimiento_cliente;
         this.telefono = telefono;
-        this.pin = pin;
     }
+
     
     
     
@@ -155,20 +154,6 @@ public class Cliente extends Persona{
      */
     public void setTelefono(String telefono) {
         this.telefono = telefono;
-    }
-
-    /**
-     * @return the pin
-     */
-    public BigDecimal getPin() {
-        return pin;
-    }
-
-    /**
-     * @param pin the pin to set
-     */
-    public void setPin(BigDecimal pin) {
-        this.pin = pin;
     }
 
     /**

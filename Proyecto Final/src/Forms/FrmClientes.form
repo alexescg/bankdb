@@ -29,18 +29,23 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Component id="pnlPrincipal" alignment="1" max="32767" attributes="0"/>
           <Component id="pnlSuperior" alignment="0" max="32767" attributes="0"/>
-          <Component id="tabbedPaneHeader1" alignment="1" max="32767" attributes="0"/>
-          <Group type="102" alignment="1" attributes="0">
-              <EmptySpace max="32767" attributes="0"/>
-              <Component id="guardarClientecmd" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
-          </Group>
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="89" max="-2" attributes="0"/>
               <Component id="jLabel1" min="-2" pref="50" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="emailtxt" min="-2" pref="189" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
+          </Group>
+          <Group type="102" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <Component id="cmdCrearCliente" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Component id="tabbedPaneHeader1" alignment="0" max="32767" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -58,10 +63,10 @@
                   </Group>
                   <Component id="jLabel1" min="-2" pref="21" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
               <Component id="tabbedPaneHeader1" min="-2" pref="292" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="guardarClientecmd" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="cmdCrearCliente" min="-2" max="-2" attributes="0"/>
               <EmptySpace pref="15" max="32767" attributes="0"/>
           </Group>
       </Group>
@@ -265,8 +270,8 @@
         <Container class="javax.swing.JPanel" name="pnlInferior1">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-              <JTabbedPaneConstraints tabName="Referencia 1">
-                <Property name="tabTitle" type="java.lang.String" value="Referencia 1"/>
+              <JTabbedPaneConstraints tabName="Referencia ">
+                <Property name="tabTitle" type="java.lang.String" value="Referencia "/>
               </JTabbedPaneConstraints>
             </Constraint>
           </Constraints>
@@ -274,49 +279,46 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace pref="92" max="32767" attributes="0"/>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace pref="68" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="1" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Component id="lblDireccionRef1" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                          <Component id="txtDireccionRef1" max="32767" attributes="0"/>
-                                      </Group>
-                                      <Group type="103" alignment="0" groupAlignment="0" attributes="0">
-                                          <Group type="102" alignment="1" attributes="0">
-                                              <Component id="lblApellidosRef1" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                              <Component id="txtApellidosRef1" min="-2" pref="256" max="-2" attributes="0"/>
-                                          </Group>
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <Component id="lblNombreRef1" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="txtNombreRef1" min="-2" pref="267" max="-2" attributes="0"/>
-                                          </Group>
-                                      </Group>
+                          <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="lblDireccionRef1" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Component id="txtDireccionRef1" max="32767" attributes="0"/>
+                              </Group>
+                              <Group type="103" alignment="0" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <Component id="lblApellidosRef1" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="txtApellidosRef1" min="-2" pref="256" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="lblTelefonoRef1" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="txtTelefonoRef1" min="-2" pref="165" max="-2" attributes="0"/>
-                                          <Component id="emailUnotxt" min="-2" pref="247" max="-2" attributes="0"/>
-                                      </Group>
+                                      <Component id="lblNombreRef1" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="txtNombreRef1" min="-2" pref="267" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
-                              <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="102" alignment="1" attributes="0">
-                              <Component id="agregarUnocmd" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="156" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="lblTelefonoRef1" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="txtTelefonoRef1" min="-2" pref="165" max="-2" attributes="0"/>
+                                  <Component id="emailUnotxt" min="-2" pref="247" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
                       </Group>
+                      <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="148" max="-2" attributes="0"/>
+                      <Component id="jButton1" min="-2" pref="109" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -348,8 +350,13 @@
                           <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                           <Component id="emailUnotxt" min="-2" max="-2" attributes="0"/>
                       </Group>
+<<<<<<< HEAD
                       <EmptySpace pref="34" max="32767" attributes="0"/>
                       <Component id="agregarUnocmd" min="-2" max="-2" attributes="0"/>
+=======
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="jButton1" min="-2" pref="30" max="-2" attributes="0"/>
+>>>>>>> origin/master
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -391,6 +398,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Agregar"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="agregarUnocmdActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel4">
               <Properties>
@@ -402,287 +412,18 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="emailUnotxtActionPerformed"/>
               </Events>
             </Component>
-          </SubComponents>
-        </Container>
-        <Container class="javax.swing.JPanel" name="pnlInferior2">
-          <Constraints>
-            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-              <JTabbedPaneConstraints tabName="Referencia 2">
-                <Property name="tabTitle" type="java.lang.String" value="Referencia 2"/>
-              </JTabbedPaneConstraints>
-            </Constraint>
-          </Constraints>
-
-          <Layout>
-            <DimensionLayout dim="0">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace pref="92" max="32767" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="lblDireccionRef2" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="txtDireccionRef2" max="32767" attributes="0"/>
-                              </Group>
-                              <Group type="103" alignment="0" groupAlignment="0" attributes="0">
-                                  <Group type="102" alignment="1" attributes="0">
-                                      <Component id="lblApellidosRef2" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="txtApellidosRef2" min="-2" pref="256" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="lblNombreRef2" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="txtNombreRef2" min="-2" pref="267" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="lblTelefonoRef2" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="txtTelefonoRef2" min="-2" pref="165" max="-2" attributes="0"/>
-                                  <Group type="102" attributes="0">
-                                      <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
-                                      <Component id="agregarDoscmd" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Component id="emailRefDostxt" alignment="0" min="-2" pref="249" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
-                      </Group>
-                      <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
-                  </Group>
-              </Group>
-            </DimensionLayout>
-            <DimensionLayout dim="1">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="lblNombreRef2" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtNombreRef2" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="lblApellidosRef2" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtApellidosRef2" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="txtDireccionRef2" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblDireccionRef2" alignment="0" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="lblTelefonoRef2" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtTelefonoRef2" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
-                          <Component id="emailRefDostxt" min="-2" pref="22" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="agregarDoscmd" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="15" max="32767" attributes="0"/>
-                  </Group>
-              </Group>
-            </DimensionLayout>
-          </Layout>
-          <SubComponents>
-            <Component class="javax.swing.JLabel" name="lblNombreRef2">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Nombre"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JTextField" name="txtNombreRef2">
-            </Component>
-            <Component class="javax.swing.JTextField" name="txtApellidosRef2">
-            </Component>
-            <Component class="javax.swing.JLabel" name="lblApellidosRef2">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Apellidos"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JLabel" name="lblDireccionRef2">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Direccion"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JTextField" name="txtDireccionRef2">
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtDireccionRef2ActionPerformed"/>
-              </Events>
-            </Component>
-            <Component class="javax.swing.JLabel" name="lblTelefonoRef2">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Telefono"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JTextField" name="txtTelefonoRef2">
-            </Component>
-            <Component class="org.edisoncor.gui.button.ButtonAction" name="agregarDoscmd">
+            <Component class="javax.swing.JButton" name="jButton1">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Agregar"/>
               </Properties>
-            </Component>
-            <Component class="javax.swing.JTextField" name="emailRefDostxt">
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="emailRefDostxtActionPerformed"/>
-              </Events>
-            </Component>
-            <Component class="javax.swing.JLabel" name="jLabel3">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Email"/>
-              </Properties>
-            </Component>
-          </SubComponents>
-        </Container>
-        <Container class="javax.swing.JPanel" name="pnlInferior3">
-          <Constraints>
-            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-              <JTabbedPaneConstraints tabName="Referencia 3">
-                <Property name="tabTitle" type="java.lang.String" value="Referencia 3"/>
-              </JTabbedPaneConstraints>
-            </Constraint>
-          </Constraints>
-
-          <Layout>
-            <DimensionLayout dim="0">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace pref="92" max="32767" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="1" attributes="0">
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="lblTelefonoRef3" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="txtTelefonoRef3" min="-2" pref="165" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="lblDireccionRef3" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="txtDireccionRef3" max="32767" attributes="0"/>
-                                  </Group>
-                                  <Group type="103" alignment="0" groupAlignment="0" attributes="0">
-                                      <Group type="102" alignment="1" attributes="0">
-                                          <Component id="lblApellidosRef3" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                          <Component id="txtApellidosRef3" min="-2" pref="256" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Component id="lblNombreRef3" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="txtNombreRef3" min="-2" pref="267" max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                                  <Group type="102" attributes="0">
-                                      <Component id="jLabel2" min="-2" pref="42" max="-2" attributes="0"/>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="emailRefUnotxt" max="32767" attributes="0"/>
-                                  </Group>
-                              </Group>
-                              <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="1" attributes="0">
-                              <Component id="agregarTrescmd" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="160" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                  </Group>
-              </Group>
-            </DimensionLayout>
-            <DimensionLayout dim="1">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="lblNombreRef3" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtNombreRef3" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="lblApellidosRef3" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtApellidosRef3" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="txtDireccionRef3" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblDireccionRef3" alignment="0" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="lblTelefonoRef3" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtTelefonoRef3" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                          <Component id="emailRefUnotxt" min="-2" pref="26" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="agregarTrescmd" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
-                  </Group>
-              </Group>
-            </DimensionLayout>
-          </Layout>
-          <SubComponents>
-            <Component class="javax.swing.JLabel" name="lblNombreRef3">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Nombre"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JTextField" name="txtNombreRef3">
-            </Component>
-            <Component class="javax.swing.JTextField" name="txtApellidosRef3">
-            </Component>
-            <Component class="javax.swing.JLabel" name="lblApellidosRef3">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Apellidos"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JLabel" name="lblDireccionRef3">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Direccion"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JTextField" name="txtDireccionRef3">
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtDireccionRef3ActionPerformed"/>
-              </Events>
-            </Component>
-            <Component class="javax.swing.JLabel" name="lblTelefonoRef3">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Telefono"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JTextField" name="txtTelefonoRef3">
-            </Component>
-            <Component class="org.edisoncor.gui.button.ButtonAction" name="agregarTrescmd">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Agregar"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JLabel" name="jLabel2">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Email"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JTextField" name="emailRefUnotxt">
             </Component>
           </SubComponents>
         </Container>
       </SubComponents>
     </Container>
-    <Component class="org.edisoncor.gui.button.ButtonAction" name="guardarClientecmd">
+    <Component class="org.edisoncor.gui.button.ButtonAction" name="cmdCrearCliente">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Guardar"/>
+        <Property name="text" type="java.lang.String" value="Crear"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="guardarClientecmdActionPerformed"/>
