@@ -270,6 +270,7 @@ public class FrmCuentaAhorro extends javax.swing.JFrame {
                 OracleUtils.executeQuery(OracleUtils.getDBConexion(), sql);
                 String sqlCA = String.format("insert into cuenta_ahorro values(%s, %s)", lblContadorCuentaAhorro.getText(), txtSaldoCA.getText());
                 OracleUtils.executeQuery(OracleUtils.getDBConexion(), sqlCA);
+                JOptionPane.showMessageDialog(rootPane, "Agregado exitosamente");
             } else {
                 JOptionPane.showMessageDialog(rootPane, "Fecha de Cierre debera ser mayor que la de Apertura por al menos 1 año ");
             }

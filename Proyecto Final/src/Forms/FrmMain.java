@@ -15,7 +15,6 @@ import javax.swing.JOptionPane;
 public class FrmMain extends javax.swing.JFrame {
 
     List<Cuenta> cuentas = (List<Cuenta>) OracleUtils.select(OracleUtils.getDBConexion(), "select * from cuentas", Cuenta.class);
-    BigDecimal saldo = new BigDecimal(0);
 
     public FrmMain() {
         initComponents();
@@ -334,17 +333,13 @@ public class FrmMain extends javax.swing.JFrame {
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         if (cuentas.stream().anyMatch(cuenta -> ("" + cuenta.getId_cuenta()).equals(txtIdCuenta.getText()))) {
             List<CuentaAhorro> cuentasAhorros = (List<CuentaAhorro>) OracleUtils.select(OracleUtils.getDBConexion(), String.format("select * from cuenta_ahorro where id_cuenta = %s", txtIdCuenta.getText()), CuentaAhorro.class);
-            cuentas.stream().forEach(cuenta -> {
-                    if (cuenta.getId_cuenta() == cuentasAhorros.get(0).getId_cuenta()) {
-                        saldo = cuentasAhorros.get(0).getSaldo();
-                    }
-                });
+
+            BigDecimal saldo = cuentasAhorros.get(0).getSaldo();
             Integer saldoAsInt = Integer.parseInt("" + saldo);
-            System.out.println("saldo" + saldo);
-            if (saldoAsInt - Integer.parseInt(txtImporte.getText()) < 0) {
+            if (saldoAsInt - Integer.parseInt(txtImporte.getText()) > 0) {
                 String sql = String.format("update cuenta_ahorro set saldo = %s", saldoAsInt - Integer.parseInt(txtImporte.getText()));
                 OracleUtils.executeQuery(OracleUtils.getDBConexion(), sql);
-                JOptionPane.showMessageDialog(rootPane, "Agregado con exito");
+                JOptionPane.showMessageDialog(rootPane, "Retirado con exito, su balance es de " + (saldoAsInt - Integer.parseInt(txtImporte.getText())));
             } else {
                 JOptionPane.showMessageDialog(rootPane, "El valor a retirar no puede exceder la cantidad maxima");
             }
