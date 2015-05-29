@@ -10,19 +10,16 @@ import javax.swing.JOptionPane;
 public class Cuenta {
 
     public Cuenta() {
-    
-    }
-        MetodosSQL metodos = new MetodosSQL();
         
-        int contRegistros = 0;
-        int id_cuenta;
+    }
+    
+    private int numCuenta;
+    private int saldo;
+    
+    MetodosSQL metodos = new MetodosSQL();
      
     public void altaCuenta()
-    {
-        if(contRegistros >= 0 ){
-            
-        }
-        
+    {        
         try
     {
         metodos.conectar();

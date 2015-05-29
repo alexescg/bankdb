@@ -31,7 +31,7 @@ public class Empleado extends Persona{
         contrasenia = Contrasenia;
         try {
             metodos.conectar();
-            String result = "SELECT * FROM EMPLEADOS WHERE usuario like '" + usuario + "' AND contrasena like '" + contrasenia + "'";
+            String result = "SELECT * FROM EMPLEADOS WHERE usuario like '" + usuario + "' AND contrasenia like '" + contrasenia + "'";
             System.out.println(result);
             rs = st.executeQuery(result);
             System.out.println("Entro en el catch");

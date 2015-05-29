@@ -1,10 +1,14 @@
 
 package Logica;
 
+import Forms.FrmMain;
 import static Logica.MetodosSQL.cn;
 import static Logica.MetodosSQL.rs;
 import static Logica.MetodosSQL.st;
 import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -13,6 +17,9 @@ import javax.swing.table.DefaultTableModel;
  * @author Edgar
  */
 public class Movimiento {
+   
+    MetodosSQL metodos = new MetodosSQL();
+    Cuenta cuenta = new Cuenta();
     
     public void mostrarTabla(JTable tabla, String Sql)
     {
@@ -45,5 +52,32 @@ public class Movimiento {
        } catch (Exception ex) {
         ex.printStackTrace();
        }    
+    }
+    
+    public boolean deposito(int NumCuenta, float Importe) 
+    {
+        float saldo;
+        float total;
+        try {
+            metodos.conectar();
+            String sql = "SELECT saldo FROM Cuentas WHERE id_cuenta = " + NumCuenta;
+            st = cn.createStatement();
+            rs = st.executeQuery(sql);
+            rs.next();
+            saldo = rs.getFloat("SALDO");
+            total = Importe + saldo;
+            cn.commit();
+            
+            String result = "UPDATE Cuentas set saldo = " + total + 
+                    "WHERE id_cuenta = " + NumCuenta;
+            st.executeQuery(result);
+            
+            cn.close();
+        } catch (SQLException ex) {
+            System.out.println("Error");
+        }
+        
+
+        return true;
     }
 }

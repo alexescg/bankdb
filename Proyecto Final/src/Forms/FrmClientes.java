@@ -9,6 +9,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 
+
 /**
  *
  * @author Edgar
@@ -474,6 +475,11 @@ public class FrmClientes extends javax.swing.JFrame {
         tabbedPaneHeader1.addTab("Referencia 3", pnlInferior3);
 
         guardarClientecmd.setText("Guardar");
+        guardarClientecmd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                guardarClientecmdActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Email");
 
@@ -548,6 +554,34 @@ public class FrmClientes extends javax.swing.JFrame {
     private void emailUnotxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailUnotxtActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_emailUnotxtActionPerformed
+
+    private void guardarClientecmdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarClientecmdActionPerformed
+        Fecha = txtDia.getText() + "/" + txtMes.getText() + "/" + txtAnio.getText();//Concatenacion fecha
+
+            if((MetodosSQL.isFechaValida(Fecha)) == true) //Metodo para validar la fecha
+        {
+                if(cliente.altaClientes(txtNombre.getText(), txtApellidos.getText(),
+                   txtDireccion.getText(), Fecha, txtTelefono.getText()) == true)
+               {
+                    int idClie = 0;                                                                             //Obtencion del id_cliente
+                    try {
+                        idClie = (metodos.consultar("SELECT MAX(ID_Cliente) FROM Clientes")).getInt(1);
+                    } catch (SQLException ex) {
+                        Logger.getLogger(FrmMain.class.getName()).log(Level.SEVERE, null, ex);
+                     }
+                    
+                    referencias.altaReferencias(txtNombreRef1.getText(), txtApellidosRef1.getText(), txtDireccionRef1.getText(), txtTelefonoRef1.getText(), idClie);
+                    referencias.altaReferencias(txtNombreRef2.getText(), txtApellidosRef2.getText(), txtDireccionRef2.getText(), txtTelefonoRef2.getText(), idClie);
+                    referencias.altaReferencias(txtNombreRef3.getText(), txtApellidosRef3.getText(), txtDireccionRef3.getText(), txtTelefonoRef3.getText(), idClie);
+                    this.dispose();
+
+                 }
+                else
+                {
+
+                }
+        }
+    }//GEN-LAST:event_guardarClientecmdActionPerformed
 
     /**
      * @param args the command line arguments
