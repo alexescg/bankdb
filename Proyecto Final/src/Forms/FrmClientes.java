@@ -5,6 +5,7 @@ import Logica.MetodosSQL;
 import Logica.OracleUtils;
 import Logica.Referencias;
 import java.util.List;
+import java.util.stream.Collectors;
 import javax.swing.JOptionPane;
 
 
@@ -62,10 +63,10 @@ public class FrmClientes extends javax.swing.JFrame {
         agregarUnocmd = new org.edisoncor.gui.button.ButtonAction();
         jLabel4 = new javax.swing.JLabel();
         emailUnotxt = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        cmdCrearCliente = new org.edisoncor.gui.button.ButtonAction();
+        btnagregarRef = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         emailtxt = new javax.swing.JTextField();
+        cmdCrearCliente = new org.edisoncor.gui.button.ButtonAction();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -225,13 +226,18 @@ public class FrmClientes extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("Agregar");
+        btnagregarRef.setText("Agregar Referencia");
+        btnagregarRef.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnagregarRefActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnlInferior1Layout = new javax.swing.GroupLayout(pnlInferior1);
         pnlInferior1.setLayout(pnlInferior1Layout);
         pnlInferior1Layout.setHorizontalGroup(
             pnlInferior1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlInferior1Layout.createSequentialGroup()
+            .addGroup(pnlInferior1Layout.createSequentialGroup()
                 .addContainerGap(68, Short.MAX_VALUE)
                 .addGroup(pnlInferior1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlInferior1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -255,12 +261,9 @@ public class FrmClientes extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(pnlInferior1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtTelefonoRef1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(emailUnotxt, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(emailUnotxt, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnagregarRef, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(37, 37, 37))
-            .addGroup(pnlInferior1Layout.createSequentialGroup()
-                .addGap(148, 148, 148)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnlInferior1Layout.setVerticalGroup(
             pnlInferior1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -286,22 +289,22 @@ public class FrmClientes extends javax.swing.JFrame {
                     .addGroup(pnlInferior1Layout.createSequentialGroup()
                         .addComponent(jLabel4)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(emailUnotxt, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                    .addComponent(emailUnotxt))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnagregarRef, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(51, 51, 51))
         );
 
         tabbedPaneHeader1.addTab("Referencia ", pnlInferior1);
 
-        cmdCrearCliente.setText("Crear");
+        jLabel1.setText("Email");
+
+        cmdCrearCliente.setText("Agregar Cliente");
         cmdCrearCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 guardarClientecmdActionPerformed(evt);
             }
         });
-
-        jLabel1.setText("Email");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -310,18 +313,21 @@ public class FrmClientes extends javax.swing.JFrame {
             .addComponent(pnlPrincipal, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(pnlSuperior, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGap(89, 89, 89)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(emailtxt, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(cmdCrearCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(tabbedPaneHeader1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(tabbedPaneHeader1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(89, 89, 89)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(emailtxt, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(121, 121, 121)
+                                .addComponent(cmdCrearCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -336,11 +342,11 @@ public class FrmClientes extends javax.swing.JFrame {
                         .addGap(1, 1, 1)
                         .addComponent(emailtxt, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(24, 24, 24)
-                .addComponent(tabbedPaneHeader1, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(cmdCrearCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addComponent(tabbedPaneHeader1, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
@@ -373,9 +379,9 @@ public class FrmClientes extends javax.swing.JFrame {
                 && OracleUtils.esCadenaValida(txtApellidos.getText())
                 && OracleUtils.esCadenaValida(txtDireccion.getText())
                 //Fecha
-                && OracleUtils.esNumeroValido(txtDia.getText())
-                && OracleUtils.esNumeroValido(txtMes.getText())
-                && OracleUtils.esNumeroValido(txtAnio.getText()) && Integer.parseInt(txtAnio.getText()) > 1950
+                && OracleUtils.esNumeroValido(txtDia.getText()) && Integer.parseInt(txtDia.getText() ) <= 31
+                && OracleUtils.esNumeroValido(txtMes.getText()) && Integer.parseInt(txtMes.getText() ) <= 12
+                && OracleUtils.esNumeroValido(txtAnio.getText()) && Integer.parseInt(txtAnio.getText()) >= 1950
                 && OracleUtils.esNumeroValido(txtTelefono.getText())
                 && OracleUtils.esCadenaValida(emailtxt.getText())) {
 
@@ -396,6 +402,7 @@ public class FrmClientes extends javax.swing.JFrame {
                     OracleUtils.CLIENTE_SEQ ,nombre, apellidos, direccion, ano, mes, dia, telefono, correo);
                 OracleUtils.executeQuery(OracleUtils.getDBConexion(), sql);
                      System.out.println("sql = " + sql);
+                     JOptionPane.showMessageDialog(rootPane, "Cliente Añadido exitosamente");
             }
         }else{
             JOptionPane.showMessageDialog(rootPane, "Hay valores que no cumplen con los requisitos, favor de verificar...");
@@ -404,7 +411,12 @@ public class FrmClientes extends javax.swing.JFrame {
     }//GEN-LAST:event_guardarClientecmdActionPerformed
 
     private void agregarUnocmdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarUnocmdActionPerformed
-        // TODO add your handling code here:
+ 
+        
+    }//GEN-LAST:event_agregarUnocmdActionPerformed
+
+    private void btnagregarRefActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnagregarRefActionPerformed
+          // TODO add your handling code here:
         if (OracleUtils.esCadenaValida(txtNombreRef1.getText())
         &&  OracleUtils.esCadenaValida(txtApellidosRef1.getText())
         &&  OracleUtils.esCadenaValida(txtDireccionRef1.getText())
@@ -423,27 +435,24 @@ public class FrmClientes extends javax.swing.JFrame {
             String apellidos = txtApellidos.getText();
             String direccion = txtDireccion.getText();
             
-            String dia = txtDia.getText();
-            String mes = txtMes.getText();
-            String ano = txtAnio.getText();
-
             String telefono = txtTelefono.getText();
             String correo = emailtxt.getText();
             
-                 {
-            //(TO_DATE('2003/05/03 21:02:44', 'yyyy/mm/dd hh24:mi:ss'));
-//            String sql = String.format("select * from clientes where nombre like '%s' and apellido like '%s' and telefono like '%s' and fecha like '(TO_DATE('%s/%s/%s', 'yyyy/mm/dd'))' and correo like '%s')",
-//                    nombre, apellidos, direccion, telefono, ano, mes, dia, correo);
-//                     System.out.println("sql = " + sql);
+                 
+            String sql = String.format("select * from clientes where nombre_cliente like '%s' and apellidos_cliente like '%s' and telefono like '%s'  and direccion_cliente like '%s' and email like '%s'",
+                    nombre, apellidos, telefono, direccion, correo);
+                     System.out.println("sql = " + sql);
             
-            //List<Cliente> clientes = OracleUtils.select(OracleUtils.getDBConexion(), sql, Cliente.class);
+            List<Cliente> clientes = (List<Cliente>) OracleUtils.select(OracleUtils.getDBConexion(), sql, Cliente.class);
             
-            
-        }}
+            String sqlRef = String.format("insert into referencias values(%s, '%s', '%s', '%s', 's%s', %s, '%s')", OracleUtils.REFERENCIAS_SEQ, nombreRef,
+                    apellidoRef, telefonoRef, direccionRef, clientes.get(0).getId_cliente(), emailRef);
+            System.out.println("sqlRef = " + sqlRef);
+            OracleUtils.executeQuery(OracleUtils.getDBConexion(), sqlRef);
+            JOptionPane.showMessageDialog(rootPane, "Referencia Añadida exitosamente.");
+        }
         
-        
-        
-    }//GEN-LAST:event_agregarUnocmdActionPerformed
+    }//GEN-LAST:event_btnagregarRefActionPerformed
     /**
          * @param args the command line arguments
          */
@@ -485,10 +494,10 @@ public class FrmClientes extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private org.edisoncor.gui.button.ButtonAction agregarUnocmd;
     private org.edisoncor.gui.util.BrightPassFilter brightPassFilter1;
+    private javax.swing.JButton btnagregarRef;
     private org.edisoncor.gui.button.ButtonAction cmdCrearCliente;
     private javax.swing.JTextField emailUnotxt;
     private javax.swing.JTextField emailtxt;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JSeparator jSeparator2;
