@@ -69,6 +69,11 @@ public class FrmMain extends javax.swing.JFrame {
         });
 
         nuevoClientecmd.setText("Nuevo Cliente");
+        nuevoClientecmd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nuevoClientecmdActionPerformed(evt);
+            }
+        });
 
         clienteExistentecmd.setText("Cliente Existente");
 
@@ -345,6 +350,10 @@ public class FrmMain extends javax.swing.JFrame {
     private void tipoCuentaboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tipoCuentaboxActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_tipoCuentaboxActionPerformed
+
+    private void nuevoClientecmdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevoClientecmdActionPerformed
+        frmClientes.setVisible(true);
+    }//GEN-LAST:event_nuevoClientecmdActionPerformed
 
     /**
      * @param args the command line arguments
